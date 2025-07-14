@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from main import app
+from app.api.main import app
 import requests
 from unittest.mock import patch, MagicMock
 
@@ -13,9 +13,9 @@ MOCK_PRODUCTS = [
 
 def mock_get_products(*args, **kwargs):
     """Mock the get_products method of MagentoScraper"""
-    return MOCK_PRODUCTS
+    return {"products": MOCK_PRODUCTS}
 
-@patch('main.get_product_prices_from_search', side_effect=mock_get_products)
+@patch('app.api.main.get_product_prices_from_search', side_effect=mock_get_products)
 def test_scrape_prices(mock_get):
     response = client.get("/scrape-prices?category_url=https://fakeurl.com")
     assert response.status_code == 200
@@ -25,7 +25,7 @@ def test_scrape_prices(mock_get):
     assert data["products"][0]["name"] == "Test Wheelchair"
     assert data["products"][0]["price"] == 123.0
 
-@patch('main.get_product_prices_from_search', side_effect=mock_get_products)
+@patch('app.tools.tools.get_product_prices_from_search', side_effect=mock_get_products)
 def test_chat_product_query(mock_get):
     response = client.post("/chat", json={"text": "I want a wheelchair"})
     assert response.status_code == 200
@@ -34,7 +34,7 @@ def test_chat_product_query(mock_get):
     assert "123.0" in data["reply"]
     assert "products" in data
 
-@patch('main.get_product_prices_from_search', side_effect=mock_get_products)
+@patch('app.tools.tools.get_product_prices_from_search', side_effect=mock_get_products)
 def test_chat_non_product_query(mock_get):
     response = client.post("/chat", json={"text": "Tell me a joke"})
     assert response.status_code == 200
@@ -172,7 +172,7 @@ def test_chat_context_inclusion():
     assert history_data["history"][0]["user"] == "My name is John"
     assert history_data["history"][1]["user"] == "What's my name?"
 
-@patch('main.get_product_prices_from_search', side_effect=mock_get_products)
+@patch('app.tools.tools.get_product_prices_from_search', side_effect=mock_get_products)
 def test_product_query_with_history(mock_get):
     """Test product query with existing chat history"""
     session_id = "test_product_history_222"

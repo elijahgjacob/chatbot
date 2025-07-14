@@ -313,7 +313,7 @@ Format the response to be user-friendly and include proper markdown formatting f
 
 
 # Backward compatibility - create a default scraper instance
-_scraper = SimpleScraper(enable_llm_filtering=True)
+_scraper = SimpleScraper(enable_llm_filtering=False)  # Disable LLM filtering by default
 
 def get_product_prices_from_search(query: str, max_pages: int = 1) -> Dict[str, Any]:
     """
