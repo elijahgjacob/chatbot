@@ -377,13 +377,130 @@
       "agent_type": "sales",
       "products": [],
       "workflow_steps": [
+        "intelligent_routing",
+        "sales_analysis",
+        "product_search"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "are you sure",
+      "timestamp": "2025-07-16T05:08:44.216459",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "I completely understand your concerns! To clarify, are you asking if I'm sure about the availability of the Sunrise wheelchairs? If so, I apologize for not finding options earlier. Let me double-check for you and ensure that I provide the most accurate information on affordable Sunrise models. Would you like me to do that?",
+      "timestamp": "2025-07-16T05:08:44.217338",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "i have sore feet",
+      "timestamp": "2025-07-16T05:08:52.420930",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "I appreciate your patience! Let's address your current concern about sore feet. Could you tell me how long you’ve been experiencing this soreness? Also, do you have any other symptoms, such as swelling or pain when walking? This will help me provide the best advice and recommendations for you.",
+      "timestamp": "2025-07-16T05:08:52.422067",
+      "agent_type": "doctor",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "medical_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "i'm a runner",
+      "timestamp": "2025-07-16T05:08:58.991450",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "It's great to hear that you're a runner! Since you mentioned having sore feet, I want to make sure we find the best solution for you. Could you share how long you've been dealing with this soreness? Additionally, are you experiencing any swelling or pain while walking? This information will help me suggest the most suitable options for relief, especially keeping your budget in mind.",
+      "timestamp": "2025-07-16T05:08:58.992301",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "i have flat feet",
+      "timestamp": "2025-07-16T05:09:15.464483",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Thank you for sharing that you have flat feet and that you're a runner. Flat feet can sometimes lead to soreness, especially with activities like running. \n\nTo better assist you, could you please tell me how long you've been experiencing soreness in your feet? Additionally, are you noticing any swelling or discomfort while walking or running? This information will help me provide the best advice and recommend suitable products for your condition. \n\nIn the meantime, it's important to consider supportive footwear and orthotic insoles, as they can help alleviate some of the discomfort associated with flat feet. \n\n**Disclaimer**: Please remember that my advice is not a substitute for professional medical care. If your soreness persists or worsens, I recommend consulting a healthcare professional for a thorough evaluation.",
+      "timestamp": "2025-07-16T05:09:15.465467",
+      "agent_type": "doctor",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "symptom_analysis",
+        "product_recommendation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "what options do you have to treat this",
+      "timestamp": "2025-07-16T05:09:52.228216",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Thank you for providing more context about your flat feet and being a runner. Given that flat feet can contribute to soreness, especially during or after running, it is important to address this condition properly.\n\nTo tailor my recommendations, could you please let me know how long you've been experiencing this soreness? Additionally, are you noticing any swelling or pain while walking or running? This will help me provide the best advice and suitable product recommendations for your needs.\n\nIn the meantime, here are a few options that may help relieve your foot soreness:\n\n1. **Orthotic Insoles**: Custom or over-the-counter arch supports can help provide the necessary support for flat feet and reduce soreness during your runs.\n   \n2. **Supportive Footwear**: Look for running shoes that offer good arch support and cushioning to minimize impact and strain on your feet.\n\n3. **Ice Packs**: If you're experiencing soreness after running, using an ice pack on your feet for 15-20 minutes can help reduce inflammation and relieve pain.\n\n4. **Compression Socks**: These can improve circulation and provide support to your feet and ankles, which may help with soreness.\n\n5. **Stretching and Strengthening Exercises**: Consider exercises that strengthen the muscles in your feet and improve flexibility, which can help alleviate discomfort over time.\n\n**Disclaimer**: Please remember that this advice is not a substitute for professional medical care. If your soreness persists, worsens, or is accompanied by severe symptoms like swelling or pain, I recommend consulting a healthcare professional for a thorough evaluation.\n\nLet me know your additional symptoms or how long you've been experiencing the soreness, and I can provide more tailored recommendations!",
+      "timestamp": "2025-07-16T05:09:52.229231",
+      "agent_type": "doctor",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "symptom_analysis",
+        "product_recommendation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "what products do you have for this",
+      "timestamp": "2025-07-16T05:10:12.125434",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "I'm sorry, I couldn't find any products matching your request. Please try rephrasing your query or ask about a different product.",
+      "timestamp": "2025-07-16T05:10:12.126511",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
         "sales_analysis",
         "product_search"
       ]
     }
   ],
   "created_at": "2025-07-16T04:55:42.094275",
-  "last_updated": "2025-07-16T05:08:31.450650",
+  "last_updated": "2025-07-16T05:10:12.126518",
   "agent_type": "sales",
   "user_context": {
     "budget_conscious": true
