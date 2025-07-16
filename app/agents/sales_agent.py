@@ -7,6 +7,7 @@ from app.core.llm import llm
 from app.core.conversation_memory import conversation_memory
 from app.tools.product_search import product_search_tool
 from app.tools.response_filter import response_filter_tool
+from app.tools.price_filter import price_filter_tool
 from langchain.schema import HumanMessage, SystemMessage
 import logging
 
@@ -63,7 +64,7 @@ class SalesAgent:
     
     def __init__(self):
         """Initialize the sales agent."""
-        self.tools = [product_search_tool, response_filter_tool]
+        self.tools = [product_search_tool, response_filter_tool, price_filter_tool]
         
     def process_query(self, query: str, session_id: str = "default") -> Dict[str, Any]:
         """Process a sales-related query with conversation memory."""
@@ -127,11 +128,56 @@ class SalesAgent:
             if should_search:
                 workflow_steps.extend(["sales_analysis", "product_search"])
                 
-                # Search for products
-                logger.info(f"Searching for products with query: {query}")
-                search_result = product_search_tool.invoke({"query": query})
-                products = search_result.get("products", [])
-                logger.info(f"Found {len(products)} products for query: {query}")
+                # Check if this is a price-based query
+                is_price_query = any(word in query.lower() for word in [
+                    'less than', 'under', 'below', 'more than', 'over', 'above',
+                    'between', 'budget', 'cheap', 'expensive', 'kwd', 'kd', 'dinar'
+                ])
+                
+                if is_price_query:
+                    # For price queries, we need to get products from conversation history first
+                    # or search for a general category, then filter by price
+                    workflow_steps.append("price_filtering")
+                    
+                    # Get previous products from conversation history
+                    previous_products = []
+                    if history:
+                        for msg in reversed(history):
+                            if msg.get("products"):
+                                previous_products = msg["products"]
+                                break
+                    
+                    if previous_products:
+                        # Filter previous products by price
+                        logger.info(f"Filtering {len(previous_products)} previous products by price")
+                        price_result = price_filter_tool.invoke({
+                            "products": previous_products,
+                            "query": query
+                        })
+                        products = price_result.get("products", [])
+                        constraints = price_result.get("constraints", {})
+                        logger.info(f"Price filtered to {len(products)} products with constraints: {constraints}")
+                    else:
+                        # No previous products, search for general category and filter
+                        logger.info(f"Price query with no previous products, searching for general category")
+                        # Try to extract a general category from the query
+                        general_search = "medical equipment"  # Default fallback
+                        search_result = product_search_tool.invoke({"query": general_search})
+                        all_products = search_result.get("products", [])
+                        
+                        # Filter by price
+                        price_result = price_filter_tool.invoke({
+                            "products": all_products,
+                            "query": query
+                        })
+                        products = price_result.get("products", [])
+                        logger.info(f"General search + price filter: {len(products)} products")
+                else:
+                    # Regular product search
+                    logger.info(f"Searching for products with query: {query}")
+                    search_result = product_search_tool.invoke({"query": query})
+                    products = search_result.get("products", [])
+                    logger.info(f"Found {len(products)} products for query: {query}")
                 
                 # If no products found, ask LLM for alternatives
                 if not products:
@@ -150,6 +196,16 @@ class SalesAgent:
                     alt_search_result = product_search_tool.invoke({"query": alt_query})
                     alt_products = alt_search_result.get("products", [])
                     if alt_products:
+                        # Apply price filtering to alternative products if this was a price query
+                        if is_price_query:
+                            logger.info(f"Applying price filter to {len(alt_products)} alternative products")
+                            price_result = price_filter_tool.invoke({
+                                "products": alt_products,
+                                "query": query
+                            })
+                            alt_products = price_result.get("products", [])
+                            logger.info(f"Price filtered alternative products to {len(alt_products)}")
+                        
                         product_lines = []
                         for i, product in enumerate(alt_products[:5], 1):
                             name = product.get("name", "Unknown Product")
