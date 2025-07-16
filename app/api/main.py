@@ -1,5 +1,5 @@
 """
-FastAPI Chatbot with LangChain Agentic Workflow
+FastAPI Chatbot with Agentic Workflow
 """
 import logging
 from fastapi import FastAPI, HTTPException, Request
@@ -7,18 +7,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict, List, Any, Optional
 
-from app.core.logging_config import setup_logging
+# Setup basic logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 from app.agents.agent import chatbot_agent
 from app.tools.tools import get_product_prices_from_search
-
-# Setup logging
-setup_logging()
-logger = logging.getLogger(__name__)
 
 # Initialize FastAPI app
 app = FastAPI(
     title="Alessa Med Virtual Health & Sales Assistant",
-    description="A chatbot that helps users find medical equipment using web scraping, OpenAI, and LangChain agentic workflows",
+    description="A chatbot that helps users find medical equipment using agentic workflows",
     version="1.0.0"
 )
 
@@ -56,7 +55,7 @@ async def root():
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
-    """Main chat endpoint using LangChain agentic workflow"""
+    """Main chat endpoint using agentic workflow"""
     query = request.text
     session_id = request.session_id
     logger.info(f"Received /chat request: {query} (session: {session_id})")
@@ -134,4 +133,4 @@ async def health_check():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000) 
+    uvicorn.run(app, host="0.0.0.0", port=8000)

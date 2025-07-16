@@ -20,12 +20,10 @@ class TestChatbotAgent:
         assert hasattr(self.agent, 'memory')
         assert hasattr(self.agent, 'prompt')
     
-    @patch('app.agents.agent.query_refinement_tool._run')
-    @patch('app.agents.agent.product_search_tool._run')
-    def test_simple_product_query(self, mock_search, mock_refine):
+    def test_simple_product_query(self):
         """Test processing a simple product query"""
-        # Mock search results
-        mock_search.return_value = {
+        # Mock the tools directly on the agent instance
+        self.agent.product_search_tool._run = lambda query: {
             "success": True,
             "products": [
                 {"name": "Basic Wheelchair", "price": "150 KWD", "link": "http://example.com/1"},
@@ -34,8 +32,7 @@ class TestChatbotAgent:
             "count": 2
         }
         
-        # Mock refinement (should not be called for simple query)
-        mock_refine.return_value = {"success": True, "search_query": "wheelchair"}
+        self.agent.query_refinement_tool._run = lambda query: {"success": True, "search_query": "wheelchair"}
         
         result = self.agent.process_query("wheelchair")
         
@@ -44,21 +41,17 @@ class TestChatbotAgent:
         assert len(result["products"]) == 2
         assert "product_search" in result["workflow_steps"]
     
-    @patch('app.agents.agent.query_refinement_tool._run')
-    @patch('app.agents.agent.product_search_tool._run')
-    @patch('app.agents.agent.response_filter_tool._run')
-    def test_complex_query_with_filtering(self, mock_filter, mock_search, mock_refine):
+    def test_complex_query_with_filtering(self):
         """Test processing a complex query that needs refinement and filtering"""
-        # Mock refinement
-        mock_refine.return_value = {
+        # Mock the tools directly on the agent instance
+        self.agent.query_refinement_tool._run = lambda query: {
             "success": True,
             "search_query": "wheelchair",
             "product": "wheelchair",
             "requirements": "cheapest"
         }
         
-        # Mock search results
-        mock_search.return_value = {
+        self.agent.product_search_tool._run = lambda query: {
             "success": True,
             "products": [
                 {"name": "Basic Wheelchair", "price": "150 KWD", "link": "http://example.com/1"},
@@ -68,8 +61,7 @@ class TestChatbotAgent:
             "count": 3
         }
         
-        # Mock filtering
-        mock_filter.return_value = {
+        self.agent.response_filter_tool._run = lambda products, query: {
             "success": True,
             "filtered_products": [
                 {"name": "Basic Wheelchair", "price": "150 KWD", "link": "http://example.com/1"}
@@ -87,15 +79,13 @@ class TestChatbotAgent:
         assert "product_search" in result["workflow_steps"]
         assert "response_filter" in result["workflow_steps"]
     
-    def test_error_handling(self):
+    @patch('app.tools.tools.get_product_prices_from_search', side_effect=Exception("Test error"))
+    def test_error_handling(self, mock_get):
         """Test error handling in the agent"""
-        # Test with a query that will cause an error
-        with patch('app.agents.agent.product_search_tool._run', side_effect=Exception("Test error")):
-            result = self.agent.process_query("wheelchair")
-            
-            assert result["success"] is False
-            assert "error" in result
-            assert "Test error" in result["error"]
+        result = self.agent.process_query("wheelchair")
+        assert result["success"] is False
+        assert "error" in result
+        assert "Test error" in result["error"]
 
 
 class TestTools:
