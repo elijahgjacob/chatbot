@@ -48,23 +48,21 @@ These are the most relevant options within your budget. Would you like more deta
 Answer with "RELEVANT" if the product should be included, or "NOT_RELEVANT" if it should be filtered out.
 """
 
-class SimpleScraper:
-    """
-    Simple scraper using BeautifulSoup with OpenAI LLM assistance for filtering and formatting.
-    """
+class ProductScraper:
+    """Scraper for medical equipment products"""
     
     def __init__(self, 
-                 base_url: str = "https://www.alessaonline.com",
-                 user_agent: str = None,
+                 base_url: str = "https://alessa.com.kw",
+                 user_agent: str = "",
                  timeout: int = 10,
                  max_retries: int = 3,
                  enable_llm_filtering: bool = True,
                  llm_model: str = "gpt-4o-mini"):
         """
-        Initialize the scraper.
+        Initialize the scraper for Al Essa Kuwait website.
         
         Args:
-            base_url: Base URL for the website
+            base_url: Base URL for the Al Essa Kuwait website
             user_agent: User agent string
             timeout: Request timeout in seconds
             max_retries: Maximum number of retries
@@ -98,11 +96,12 @@ class SimpleScraper:
         self.session.headers.update({"User-Agent": user_agent})
 
     def build_search_url(self, query: str, page: int = 1) -> str:
-        """Build search URL for alessaonline.com."""
+        """Build search URL for Al Essa Kuwait website."""
         search_term = re.sub(r'[^a-zA-Z0-9 ]', '', query).strip().replace(' ', '+')
-        url = f"{self.base_url}/default/catalogsearch/result/?q={search_term}"
+        # Al Essa Kuwait uses Shopify search format
+        url = f"{self.base_url}/search?q={search_term}&type=product"
         if page > 1:
-            url += f"&p={page}"
+            url += f"&page={page}"
         return url
 
     def parse_price(self, price_str: str) -> Optional[float]:
@@ -129,26 +128,89 @@ class SimpleScraper:
             return None
 
     def parse_products(self, soup: BeautifulSoup) -> List[Dict[str, Any]]:
-        """Parse products from BeautifulSoup object."""
+        """Parse products from Al Essa Kuwait Shopify website."""
         products = []
         
-        for product in soup.select('li.item.product.product-item'):
-            name_tag = product.select_one('h2.product.name.product-item-name a')
-            price_tag = product.select_one('span.price')
-            
-            if name_tag and price_tag:
-                name = name_tag.get_text(strip=True)
-                price = self.parse_price(price_tag.get_text(strip=True))
-                url = name_tag.get('href', '')
-                
-                if price is not None:
-                    products.append({
-                        'name': name,
-                        'price': price,
-                        'url': url
-                    })
+        # Al Essa Kuwait Shopify structure - try multiple selectors
+        product_selectors = [
+            'div.product-card',
+            'div[data-product-id]',
+            'article.product-card',
+            '.grid__item .card',
+            '.product-item'
+        ]
         
-        logger.info(f"Scraped {len(products)} products from search.")
+        for selector in product_selectors:
+            product_elements = soup.select(selector)
+            if product_elements:
+                logger.info(f"Found {len(product_elements)} products using selector: {selector}")
+                break
+        else:
+            # Fallback: try to find any product-like elements
+            product_elements = soup.select('[class*="product"]')
+            logger.info(f"Fallback: Found {len(product_elements)} product-like elements")
+        
+        for product in product_elements:
+            try:
+                # Try multiple name selectors for Shopify structure
+                name_selectors = [
+                    'h3.card__heading a',
+                    '.card__information h3 a',
+                    '.product-card__title a',
+                    'h2 a',
+                    'h3 a',
+                    'a[href*="/products/"]'
+                ]
+                
+                name_tag = None
+                for name_sel in name_selectors:
+                    name_tag = product.select_one(name_sel)
+                    if name_tag:
+                        break
+                
+                # Try multiple price selectors
+                price_selectors = [
+                    '.price .money',
+                    '.card__price .money',
+                    '.product-card__price .money',
+                    '[class*="price"] .money',
+                    '.price',
+                    '[data-price]'
+                ]
+                
+                price_tag = None
+                for price_sel in price_selectors:
+                    price_tag = product.select_one(price_sel)
+                    if price_tag:
+                        break
+                
+                if name_tag:
+                    name = name_tag.get_text(strip=True)
+                    price_text = price_tag.get_text(strip=True) if price_tag else "0"
+                    price = self.parse_price(price_text)
+                    url = name_tag.get('href', '')
+                    
+                    # Make URL absolute if relative
+                    if url and not url.startswith('http'):
+                        url = f"{self.base_url}{url}"
+                    
+                    # Extract vendor/brand if available
+                    vendor_tag = product.select_one('.card__vendor, .product-card__vendor, [class*="vendor"]')
+                    vendor = vendor_tag.get_text(strip=True) if vendor_tag else ""
+                    
+                    if name and price is not None:
+                        products.append({
+                            'name': name,
+                            'price': price,
+                            'url': url,
+                            'vendor': vendor,
+                            'currency': 'KWD'
+                        })
+            except Exception as e:
+                logger.warning(f"Error parsing product: {e}")
+                continue
+        
+        logger.info(f"Successfully scraped {len(products)} products from Al Essa Kuwait.")
         return products
 
     def is_relevant_with_llm(self, query: str, product_data: Dict[str, Any]) -> bool:
@@ -313,7 +375,7 @@ Format the response to be user-friendly and include proper markdown formatting f
 
 
 # Backward compatibility - create a default scraper instance
-_scraper = SimpleScraper(enable_llm_filtering=False)  # Disable LLM filtering by default
+_scraper = ProductScraper(enable_llm_filtering=False)  # Disable LLM filtering by default
 
 def get_product_prices_from_search(query: str, max_pages: int = 1) -> Dict[str, Any]:
     """
@@ -331,7 +393,7 @@ def get_product_prices_from_search(query: str, max_pages: int = 1) -> Dict[str, 
 
 if __name__ == "__main__":
     # Example usage
-    scraper = SimpleScraper(enable_llm_filtering=True)
+    scraper = ProductScraper(enable_llm_filtering=True)
     
     result = scraper.search_products(
         query="wheelchair under 100 KWD", 
