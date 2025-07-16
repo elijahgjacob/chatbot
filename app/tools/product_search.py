@@ -30,9 +30,15 @@ def get_alternative_search_terms(query: str) -> list:
     query_lower = query.lower()
     alternatives = []
     
-    # Common product variations
+    # Broadened alternatives for heat/cold packs
     if 'icepack' in query_lower or 'ice pack' in query_lower:
         alternatives.extend(['ice', 'cold', 'gel', 'pack', 'therapy'])
+    elif 'heatpack' in query_lower or 'heat pack' in query_lower:
+        alternatives.extend(['heat', 'hot', 'warm', 'pack', 'therapy'])
+    elif 'coldpack' in query_lower or 'cold pack' in query_lower:
+        alternatives.extend(['cold', 'ice', 'gel', 'pack', 'therapy'])
+    elif 'hotpack' in query_lower or 'hot pack' in query_lower:
+        alternatives.extend(['hot', 'heat', 'warm', 'pack', 'therapy'])
     elif 'wheelchair' in query_lower:
         alternatives.extend(['chair', 'mobility', 'transport'])
     elif 'walker' in query_lower:
@@ -61,9 +67,11 @@ def product_search_tool(query: str) -> dict:
         
         all_products = []
         best_result = None
+        used_term = query
+        found_with_alternative = False
         
         # Try each search term until we find good results
-        for search_term in search_terms:
+        for idx, search_term in enumerate(search_terms):
             result = get_product_prices_from_search(search_term)
             products = result.get('products', [])
             
@@ -75,6 +83,8 @@ def product_search_tool(query: str) -> dict:
                 all_products.extend(valid_products)
                 if not best_result:
                     best_result = result
+                    used_term = search_term
+                    found_with_alternative = (idx != 0)
             else:
                 logger.info(f"ProductSearchTool: No valid products found with search term '{search_term}'")
         
@@ -99,7 +109,9 @@ def product_search_tool(query: str) -> dict:
                 "query": query,
                 "products": unique_products[:10],  # Limit to 10 for general queries
                 "count": len(unique_products),
-                "formatted_response": best_result.get('formatted_reply', '') if best_result else ''
+                "formatted_response": best_result.get('formatted_reply', '') if best_result else '',
+                "used_alternative": found_with_alternative,
+                "used_term": used_term
             }
         
         # Filter products based on keywords
@@ -120,13 +132,16 @@ def product_search_tool(query: str) -> dict:
         if not filtered_products and unique_products:
             logger.info(f"ProductSearchTool: No keyword matches, returning first 5 products")
             filtered_products = unique_products[:5]
+            found_with_alternative = True
         
         return {
             "success": True,
             "query": query,
             "products": filtered_products,
             "count": len(filtered_products),
-            "formatted_response": best_result.get('formatted_reply', '') if best_result else ''
+            "formatted_response": best_result.get('formatted_reply', '') if best_result else '',
+            "used_alternative": found_with_alternative,
+            "used_term": used_term
         }
     except Exception as e:
         logger.error(f"ProductSearchTool error: {e}")
@@ -135,5 +150,7 @@ def product_search_tool(query: str) -> dict:
             "query": query,
             "error": str(e),
             "products": [],
-            "count": 0
+            "count": 0,
+            "used_alternative": False,
+            "used_term": query
         } 
