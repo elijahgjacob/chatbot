@@ -240,11 +240,4 @@ class EnhancedProductSearch:
 # Initialize enhanced search
 enhanced_search = EnhancedProductSearch()
 
-@tool("enhanced_product_search", return_direct=False)
-def enhanced_product_search_tool(query: str, max_results: int = 10) -> dict:
-    """
-    Enhanced product search with semantic matching, relevance scoring, and intelligent filtering.
-    Use this tool for more accurate and relevant product recommendations.
-    """
-    logging.info("TOOL | enhanced_product_search")
-    return enhanced_search.search_products(query, max_results)
+# Note: enhanced_product_search_tool removed due to duplication with product_search_tool

@@ -4,7 +4,7 @@ Tests for the Agentic Workflow
 import pytest
 from unittest.mock import patch, MagicMock
 from app.agents.agent import ChatbotAgent
-from app.tools.tools import ProductSearchTool, ResponseFilterTool, QueryRefinementTool
+from app.tools.tools import ResponseFilterTool, QueryRefinementTool
 
 
 class TestChatbotAgent:
@@ -92,10 +92,10 @@ class TestTools:
     """Test the individual tools"""
     
     def test_product_search_tool(self):
-        """Test the ProductSearchTool"""
-        tool = ProductSearchTool()
-        assert tool.name == "product_search"
-        assert "Search for products" in tool.description
+        """Test the product_search_tool from product_search.py"""
+        from app.tools.product_search import product_search_tool
+        assert product_search_tool.name == "product_search"
+        assert "Search the Alessa Med website" in product_search_tool.description
     
     def test_response_filter_tool(self):
         """Test the ResponseFilterTool"""

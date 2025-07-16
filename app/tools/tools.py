@@ -5,16 +5,6 @@ Tools for the chatbot application.
 from typing import Dict, List, Any
 from app.core.scraping import get_product_prices_from_search
 
-class ProductSearchTool:
-    def __init__(self):
-        self.name = "product_search"
-        self.description = "Search for products based on user queries"
-    def _run(self, query: str) -> Dict[str, Any]:
-        # Use the real scraper
-        result = get_product_prices_from_search(query)
-        products = result.get('products', [])
-        return {"success": True, "products": products, "count": len(products)}
-
 class ResponseFilterTool:
     def __init__(self):
         self.name = "response_filter"
@@ -58,6 +48,4 @@ class QueryRefinementTool:
         search_query = product if product else "medical equipment"
         return {"success": True, "search_query": search_query, "product": product, "requirements": " ".join(requirements) if requirements else "general"}
 
-def get_product_prices_from_search(query: str, max_pages: int = 1) -> Dict[str, Any]:
-    from app.core.scraping import get_product_prices_from_search as real_scraper
-    return real_scraper(query, max_pages=max_pages) 
+# Removed duplicate function - using the one from app.core.scraping 
