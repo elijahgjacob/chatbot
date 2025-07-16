@@ -118,7 +118,7 @@ class SalesAgent:
             
             # Fallback: if LLM decision is unclear, check for obvious product keywords
             if not should_search:
-                obvious_product_terms = ["wheelchair", "walker", "brace", "sunrise", "drive", "cheapest", "price", "cost", "do you have", "show me", "looking for"]
+                obvious_product_terms = ["wheelchair", "walker", "brace", "sunrise", "drive", "cheapest", "price", "cost", "do you have", "show me", "looking for", "ice", "icepack", "ice pack", "cold", "hot", "gel", "pack"]
                 if any(term in query.lower() for term in obvious_product_terms):
                     should_search = True
                     logger.info(f"Fallback: Forcing product search for query: {query}")
