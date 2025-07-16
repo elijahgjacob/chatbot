@@ -118,10 +118,120 @@
         "sales_analysis",
         "product_search"
       ]
+    },
+    {
+      "role": "user",
+      "content": "i need some help to find some product that can help me with scoliosis",
+      "timestamp": "2025-07-16T12:13:06.518636",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Scoliosis can cause discomfort and may require various supportive products to help manage symptoms. It's essential to consult with a healthcare professional for personalized treatment and management options.\n\nTo assist you further, could you please describe the specific symptoms you're experiencing with your scoliosis? For example, are you dealing with pain, mobility issues, or something else? This information will help me recommend the most suitable products for your needs. \n\nIn the meantime, based on your previous mention of using ice packs, you might find the following products beneficial for managing discomfort associated with scoliosis:\n\n1. **DURA SOFT COLD/HOT GEL PACK** - Great for applying heat or cold therapy to help ease pain. [View Product](https://www.alessaonline.com/default/dura-soft-cold-hot-gel-pack-sp-7551p.html) - 2.75 KWD\n\n2. **Chattanooga Colpac Reusable Gel Ice Pack** - Ideal for cold therapy to reduce inflammation and pain. [View Product](https://www.alessaonline.com/default/chattanooga-colpac-reusable-gel-ice-pack-for-cold-therapy-polyurethane-black.html) - 9.0 KWD\n\n3. **R & R Rexicare Ice/Hot Water Bag** - Useful for both heat and cold therapy, providing flexibility in treatment. [View Product](https://www.alessaonline.com/default/r-r-rexicare-ice-hot-water-bag-medium-blue-re-sbb-309-epb.html) - 3.5 KWD\n\n4. **Swedish Posture TENS Pads** - These can help relieve muscle tension and pain through electrical stimulation. [View Product](https://www.alessaonline.com/default/swedish-posture-tens-pads-packs-of-4-0328b3.html) - 8.0 KWD\n\n**Disclaimer**: Please remember that this advice does not replace professional medical care. If you experience severe symptoms, such as significant pain or difficulty in mobility, I strongly encourage you to seek medical attention. Always consult with a healthcare provider for proper diagnosis and treatment tailored to your condition.",
+      "timestamp": "2025-07-16T12:13:06.519155",
+      "agent_type": "doctor",
+      "products": [
+        {
+          "name": "Medical Master Shower Trolley - # MST-2000",
+          "price": 1600.0,
+          "url": "https://www.alessaonline.com/default/buy-medical-master-shower-trolley-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "MEDICAL MASTER Foot Step, Double # Ms-12",
+          "price": 55.0,
+          "url": "https://www.alessaonline.com/default/buy-medical-master-foot-step-double-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Medical Master Bath Sling -Medium",
+          "price": 65.0,
+          "url": "https://www.alessaonline.com/default/buy-medical-master-bath-sling-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Drive Medical Standard Ecotec 2G Wheelchair",
+          "price": 95.0,
+          "url": "https://www.alessaonline.com/default/drive-medical-standard-ecotec-2g-wheelchair.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Medical Master Sling With Head Support -Large",
+          "price": 65.0,
+          "url": "https://www.alessaonline.com/default/medical-master-sling-with-head-support-large.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "symptom_analysis",
+        "product_recommendation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "i need some help to find some product that can help me with scoliosis",
+      "timestamp": "2025-07-16T12:13:49.421575",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Scoliosis can often lead to discomfort or pain, and using supportive products can help manage the symptoms. Based on your query and previous mention of using ice packs, here are some products that may be beneficial for your condition:\n\n1. **BACK Brace for Back** - This brace can provide support to your back and help alleviate discomfort. [View Product](https://www.alessaonline.com/default/buy-back-brace-for-back-online-kuwait.html) - 7.0 KWD\n\n2. **Thuasne Back Support Lombax** - This support belt is designed to help stabilize the lower back, which can be helpful for scoliosis. [View Product](https://www.alessaonline.com/default/buy-thuasne-back-support-lombax-online-kuwait.html) - 19.0 KWD\n\n3. **Flamingo Clavicle Brace** - This brace may assist in improving posture, which can be beneficial for those with scoliosis. [View Product](https://www.alessaonline.com/default/buy-flamingo-clavicle-brace-online-kuwait.html) - 5.0 KWD\n\n4. **Thuasne Dorso Rigid 35 High Back Belt** - This high back support is designed for more rigid support, which may be ideal depending on the severity of your scoliosis. [View Product](https://www.alessaonline.com/default/buy-thuasne-dorso-high-back-belt-online.html) - 65.0 KWD\n\n5. **Thuasne Back Support Lombacross Activity H21 Lumbar Support Belt** - This lumbar support belt can provide additional comfort during daily activities. [View Product](https://www.alessaonline.com/default/buy-thuasne-back-support-lombacross-activity-online-kuwait.html) - 19.0 KWD\n\n**Disclaimer**: Please remember that while these products may assist in managing your symptoms, they do not replace professional medical care. It's important to consult with a healthcare professional for a proper diagnosis and tailored treatment plan, especially if you are experiencing significant pain or mobility issues.\n\nCould you please share more about the specific symptoms you are experiencing, such as pain levels or any mobility concerns? This information will help me provide more personalized recommendations.",
+      "timestamp": "2025-07-16T12:13:49.422132",
+      "agent_type": "doctor",
+      "products": [
+        {
+          "name": "BACK Brace for Back",
+          "price": 7.0,
+          "url": "https://www.alessaonline.com/default/buy-back-brace-for-back-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Thuasne Back Support Lombax - 26Cm 0824",
+          "price": 19.0,
+          "url": "https://www.alessaonline.com/default/buy-thuasne-back-support-lombax-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Flamingo Clavicle Brace - # OC-2018",
+          "price": 5.0,
+          "url": "https://www.alessaonline.com/default/buy-flamingo-clavicle-brace-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Thuasne Dorso Rigid 35 High Back Belt White - # 089001",
+          "price": 65.0,
+          "url": "https://www.alessaonline.com/default/buy-thuasne-dorso-high-back-belt-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Thuasne Back Support Lombacross Activity H21 Lumbar Support Belt Black - # 0836",
+          "price": 19.0,
+          "url": "https://www.alessaonline.com/default/buy-thuasne-back-support-lombacross-activity-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "symptom_analysis",
+        "product_recommendation"
+      ]
     }
   ],
   "created_at": "2025-07-16T12:10:56.559019",
-  "last_updated": "2025-07-16T12:11:03.146686",
-  "agent_type": "sales",
+  "last_updated": "2025-07-16T12:13:49.422139",
+  "agent_type": "doctor",
   "user_context": {}
 }

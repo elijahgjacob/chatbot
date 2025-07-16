@@ -282,6 +282,10 @@ class DoctorAgent:
         if "pain" in symptom_lower:
             queries.extend(["ice pack", "heating pad", "pain relief"])
         
+        # Scoliosis and spine-related products
+        if any(word in symptom_lower for word in ["scoliosis", "curved spine", "spine curve"]):
+            queries.extend(["back brace", "spinal brace", "posture support", "back support", "scoliosis brace"])
+        
         # If no specific matches, try general medical equipment
         if not queries:
             queries.append("medical equipment")
