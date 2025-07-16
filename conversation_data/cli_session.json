@@ -513,12 +513,51 @@
       "agent_type": "sales",
       "products": [],
       "workflow_steps": [
+        "intelligent_routing",
         "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "im so tired",
+      "timestamp": "2025-07-16T05:12:40.209303",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "I'm sorry to hear that you're feeling so tired. To better understand your situation, could you tell me how long you've been feeling this way? Have you noticed any other symptoms or changes in your routine that might be contributing to your fatigue?",
+      "timestamp": "2025-07-16T05:12:40.210439",
+      "agent_type": "doctor",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "medical_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "i need a heatpack",
+      "timestamp": "2025-07-16T05:12:51.205565",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "I'm sorry, I couldn't find any products matching your request. Please try rephrasing your query or ask about a different product.",
+      "timestamp": "2025-07-16T05:12:51.206547",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "sales_analysis",
+        "product_search"
       ]
     }
   ],
   "created_at": "2025-07-16T04:55:42.094275",
-  "last_updated": "2025-07-16T05:12:35.317804",
+  "last_updated": "2025-07-16T05:12:51.206555",
   "agent_type": "sales",
   "user_context": {
     "budget_conscious": true
