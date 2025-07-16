@@ -5,15 +5,8 @@ Tools for the chatbot application.
 from typing import Dict, List, Any
 from app.core.scraping import get_product_prices_from_search
 
-class ProductSearchTool:
-    def __init__(self):
-        self.name = "product_search"
-        self.description = "Search for products based on user queries"
-    def _run(self, query: str) -> Dict[str, Any]:
-        # Use the real scraper
-        result = get_product_prices_from_search(query)
-        products = result.get('products', [])
-        return {"success": True, "products": products, "count": len(products)}
+# Note: ProductSearchTool has been removed to eliminate duplication.
+# Use product_search_tool from app.tools.product_search instead.
 
 class ResponseFilterTool:
     def __init__(self):

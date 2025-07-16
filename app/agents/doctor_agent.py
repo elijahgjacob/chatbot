@@ -4,8 +4,8 @@ Doctor Agent for Al Essa Kuwait - Specialized in medical advice and product reco
 
 from typing import Dict, List, Any
 from app.core.llm import llm
-from app.core.conversation_memory import conversation_memory
 from app.tools.product_search import product_search_tool
+from app.agents.base_agent import BaseAgent
 from langchain.schema import HumanMessage, SystemMessage
 
 DOCTOR_AGENT_PROMPT = """You are a knowledgeable virtual doctor for Al Essa Kuwait, specializing in providing medical advice and recommending appropriate medical products.
@@ -64,13 +64,18 @@ Based on symptoms, recommend appropriate products:
 
 Remember: Your primary goal is to help patients while ensuring their safety and encouraging professional medical care when appropriate!"""
 
-class DoctorAgent:
+class DoctorAgent(BaseAgent):
     """Doctor agent for medical advice and product recommendations."""
     
     def __init__(self):
         """Initialize the doctor agent."""
+        super().__init__("doctor")
         self.tools = [product_search_tool]
         
+    def handle_chat(self, query: str, session_id: str) -> Dict[str, Any]:
+        """Handle chat request for medical queries."""
+        return self.process_query(query, session_id)
+    
     def process_query(self, query: str, session_id: str = "default") -> Dict[str, Any]:
         """Process a medical-related query with conversation memory."""
         try:
@@ -78,8 +83,7 @@ class DoctorAgent:
             products = []
             
             # Get conversation history for context
-            history = conversation_memory.get_conversation_history(session_id, max_messages=5)
-            user_context = conversation_memory.get_user_context(session_id)
+            history, user_context = self._get_conversation_context(session_id)
             
             # Build context-aware prompt
             context_prompt = self._build_context_prompt(query, history, user_context)
@@ -127,14 +131,7 @@ class DoctorAgent:
                     all_products.extend(products_found)
                 
                 # Remove duplicates and limit results
-                unique_products = []
-                seen_names = set()
-                for product in all_products:
-                    if product.get("name") not in seen_names:
-                        unique_products.append(product)
-                        seen_names.add(product.get("name"))
-                
-                products = unique_products[:5]  # Limit to 5 most relevant products
+                products = self._deduplicate_products(all_products, limit=5)
                 
                 # Generate medical advice with product recommendations
                 final_messages = [
@@ -148,60 +145,17 @@ class DoctorAgent:
                 workflow_steps.append("medical_conversation")
                 reply = llm_response
             
-            # Update conversation memory
-            conversation_memory.add_message(
-                session_id=session_id,
-                role="user",
-                content=query
-            )
-            conversation_memory.add_message(
-                session_id=session_id,
-                role="assistant",
-                content=reply,
-                agent_type="doctor",
-                products=products,
-                workflow_steps=workflow_steps
-            )
-            
-            # Update user context based on the conversation
+            # Handle conversation memory and update context
+            self._handle_conversation_memory(session_id, query, reply, products, workflow_steps)
             self._update_user_context(session_id, query, products)
             
-            return {
-                "success": True,
-                "reply": reply,
-                "products": products,
-                "workflow_steps": workflow_steps,
-                "agent_type": "doctor"
-            }
+            return self._build_response(True, reply, products, workflow_steps)
             
         except Exception as e:
-            return {
-                "success": False,
-                "reply": f"I'm sorry, I encountered an error: {str(e)}",
-                "products": [],
-                "workflow_steps": ["error"],
-                "agent_type": "doctor"
-            }
+            error_msg = f"I'm sorry, I encountered an error: {str(e)}"
+            return self._build_response(False, error_msg, [], ["error"], str(e))
     
-    def _build_context_prompt(self, query: str, history: List[Dict], user_context: Dict[str, Any]) -> str:
-        """Build a context-aware prompt for the LLM."""
-        prompt = f"Current patient query: {query}\n\n"
-        
-        if history:
-            prompt += "Recent conversation history:\n"
-            for msg in history[-3:]:  # Last 3 messages for context
-                role = "Patient" if msg["role"] == "user" else "You"
-                prompt += f"{role}: {msg['content']}\n"
-            prompt += "\n"
-        
-        if user_context:
-            prompt += "Patient context:\n"
-            for key, value in user_context.items():
-                prompt += f"- {key}: {value}\n"
-            prompt += "\n"
-        
-        prompt += "Please respond naturally, considering the conversation history and patient context."
-        return prompt
+
     
     def _update_user_context(self, session_id: str, query: str, products: List[Dict]) -> None:
         """Update user context based on the medical conversation."""
