@@ -128,11 +128,14 @@ class DoctorAgent:
                 
                 # Remove duplicates and limit results
                 unique_products = []
+
+                # Use case-insensitive comparison for product names
                 seen_names = set()
                 for product in all_products:
-                    if product.get("name") not in seen_names:
+                    name_key = product.get("name", "").strip().lower()
+                    if name_key and name_key not in seen_names:
                         unique_products.append(product)
-                        seen_names.add(product.get("name"))
+                        seen_names.add(name_key)
                 
                 products = unique_products[:5]  # Limit to 5 most relevant products
                 
@@ -289,7 +292,10 @@ class DoctorAgent:
         # If no specific matches, try general medical equipment
         if not queries:
             queries.append("medical equipment")
-        
+
+        # Remove duplicate queries while preserving order
+        queries = list(dict.fromkeys(queries))
+ 
         return queries[:3]  # Limit to 3 search queries
 
 # Initialize doctor agent

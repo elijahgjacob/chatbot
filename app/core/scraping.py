@@ -386,7 +386,36 @@ Format the response to be user-friendly and include proper markdown formatting f
                 break
         
         logger.info(f"Total relevant items for '{query}': {len(all_products)}")
-        
+
+        # ---------------------------------------------
+        # Deduplicate products by (name, url) to avoid
+        # showing the same item multiple times when it
+        # appears across pages or through different CSS
+        # selectors. Comparison is done case-insensitively
+        # and ignores leading/trailing whitespace.
+        # ---------------------------------------------
+        unique_products = []
+        seen_keys = set()
+
+        for product in all_products:
+            # Build a stable key from name and url in lowercase
+            name_key = product.get("name", "").strip().lower()
+            url_key = product.get("url", "").strip().lower()
+
+            # Skip if critical data missing
+            if not name_key:
+                continue
+
+            key = (name_key, url_key)
+            if key not in seen_keys:
+                seen_keys.add(key)
+                unique_products.append(product)
+
+        logger.info(f"Unique products for '{query}': {len(unique_products)} (removed {len(all_products) - len(unique_products)} duplicates)")
+
+        # Replace all_products with the de-duplicated version
+        all_products = unique_products
+
         # Format the response
         if use_llm_formatting and self.enable_llm_filtering:
             formatted_reply = self.format_products_with_llm(query, all_products)
