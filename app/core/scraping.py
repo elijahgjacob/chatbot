@@ -210,7 +210,20 @@ class ProductScraper:
                             vendor = vendor_tag.get_text(strip=True)
                             break
                     
-                    if name and price is not None:
+                    # Filter out non-product items
+                    non_product_keywords = [
+                        'downloadable', 'my downloadable', 'customer', 'account', 'login', 
+                        'register', 'cart', 'wishlist', 'compare', 'search', 'menu',
+                        'navigation', 'footer', 'header', 'sidebar', 'breadcrumb'
+                    ]
+                    
+                    name_lower = name.lower()
+                    is_non_product = any(keyword in name_lower for keyword in non_product_keywords)
+                    
+                    # Also filter out items with 0 price that are likely placeholders
+                    is_placeholder = price == 0.0 and any(keyword in name_lower for keyword in ['downloadable', 'customer', 'account'])
+                    
+                    if name and price is not None and not is_non_product and not is_placeholder:
                         products.append({
                             'name': name,
                             'price': price,
