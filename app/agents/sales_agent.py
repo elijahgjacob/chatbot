@@ -8,7 +8,7 @@ from langchain.schema import HumanMessage, SystemMessage
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.memory import ConversationBufferMemory
 from langchain.tools import BaseTool
-from pydantic import BaseModel, Field
+# from pydantic import BaseModel, Field  # Removed due to Python 3.13 incompatibility
 
 from app.core.llm import llm
 from app.core.prompts import SYSTEM_PROMPT, SALES_DISCOVERY_PROMPT

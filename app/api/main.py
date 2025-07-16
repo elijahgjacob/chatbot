@@ -2,10 +2,11 @@
 FastAPI Chatbot with Agentic Workflow
 """
 import logging
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, Body
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict, List, Any, Optional
+from dataclasses import dataclass, field, asdict
 
 # Setup basic logging
 logging.basicConfig(level=logging.INFO)
@@ -33,19 +34,22 @@ app.add_middleware(
 # In-memory chat history storage (replace with database in production)
 chat_history: Dict[str, List[Dict[str, str]]] = {}
 
-class ChatRequest(BaseModel):
+@dataclass
+class ChatRequest:
     text: str
-    session_id: Optional[str] = "default"
+    session_id: str = "default"
 
-class ChatResponse(BaseModel):
+@dataclass
+class ChatResponse:
     response: str
     reply: str
     session_id: str
-    products: List[Dict[str, Any]] = []
-    workflow_steps: List[str] = []
+    products: list = field(default_factory=list)
+    workflow_steps: list = field(default_factory=list)
     success: bool = True
 
-class ScrapePricesRequest(BaseModel):
+@dataclass
+class ScrapePricesRequest:
     query: str
 
 @app.get("/")
@@ -53,11 +57,12 @@ async def root():
     """Health check endpoint"""
     return {"message": "Medical Equipment Chatbot API", "status": "running"}
 
-@app.post("/chat", response_model=ChatResponse)
-async def chat(request: ChatRequest):
-    """Main chat endpoint using agentic workflow"""
-    query = request.text
-    session_id = request.session_id
+@app.post("/chat")
+async def chat(request: Request):
+    data = await request.json()
+    chat_request = ChatRequest(**data)
+    query = chat_request.text
+    session_id = chat_request.session_id
     logger.info(f"Received /chat request: {query} (session: {session_id})")
     try:
         agent_result = chatbot_agent.process_query(query, session_id)
@@ -72,24 +77,24 @@ async def chat(request: ChatRequest):
             # Keep only last 10 messages
             if len(chat_history[session_id]) > 10:
                 chat_history[session_id] = chat_history[session_id][-10:]
-            return ChatResponse(
+            return asdict(ChatResponse(
                 response=agent_result["response"],
                 reply=agent_result["response"],
                 session_id=session_id,
                 products=agent_result.get("products", []),
                 workflow_steps=agent_result.get("workflow_steps", []),
                 success=True
-            )
+            ))
         else:
             logger.warning("Agent failed, returning error response")
-            return ChatResponse(
+            return asdict(ChatResponse(
                 response=agent_result.get("response", "Sorry, something went wrong."),
                 reply=agent_result.get("response", "Sorry, something went wrong."),
                 session_id=session_id,
                 products=[],
                 workflow_steps=["agent_error"],
                 success=False
-            )
+            ))
     except Exception as e:
         logger.error(f"Error in chat endpoint: {e}")
         raise HTTPException(status_code=500, detail=str(e))
@@ -102,9 +107,10 @@ async def scrape_prices_get(category_url: str):
     return {"products": result.get("products", [])}
 
 @app.post("/scrape-prices")
-async def scrape_prices(request: ScrapePricesRequest):
-    """Scrape product prices based on a query"""
-    result = get_product_prices_from_search(request.query)
+async def scrape_prices(request: Request):
+    data = await request.json()
+    scrape_request = ScrapePricesRequest(**data)
+    result = get_product_prices_from_search(scrape_request.query)
     return {"products": result.get("products", [])}
 
 @app.get("/chat-history/{session_id}")
