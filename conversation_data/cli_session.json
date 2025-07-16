@@ -27,12 +27,87 @@
         "sales_analysis",
         "product_search"
       ]
+    },
+    {
+      "role": "user",
+      "content": "great",
+      "timestamp": "2025-07-16T12:11:35.000520",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "I'm glad to hear you're doing great! Since you're looking for budget-friendly options, I can help you find more products that fit your price range. Is there a specific type of product you're interested in right now, or would you like me to suggest some alternatives in medical equipment or home appliances?",
+      "timestamp": "2025-07-16T12:11:35.000849",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "i need some help to find some product that can help me with scoliosis",
+      "timestamp": "2025-07-16T12:11:54.650450",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Here are the top options I found for your request:\n\n1. Thuasne Genu Dynastab Knee Brace With Bi-Axial Hinge, Grey # 2370 05 - 19.0 KWD\n   https://www.alessaonline.com/default/buy-thuasne-genu-dynastab-knee-brace-online-kuwait.html\n2. Thuasne Ligaflex Knee Brace 2370 - 19.0 KWD\n   https://www.alessaonline.com/default/buy-thuasne-ligaflex-knee-brace-online.html\n3. Flamingo Soft Cervical Collar - 2.75 KWD\n   https://www.alessaonline.com/default/buy-flamingo-soft-collar-online.html\n4. Genu Ligaflex  Knee Brace With Hinge (Closed Long) - 29.0 KWD\n   https://www.alessaonline.com/default/buy-genu-ligaflex-knee-brace-with-hinge-online-kuwait.html\n5. M+D Forearm Crutches, Height Adjustable, Black ,Pair ,# MD10002Rev5 - 35.0 KWD\n   https://www.alessaonline.com/default/buy-md-forearm-crutches-online-kuwait.html\n\nIf you want more details about any of these, or need help choosing, just let me know!",
+      "timestamp": "2025-07-16T12:11:54.650780",
+      "agent_type": "sales",
+      "products": [
+        {
+          "name": "Thuasne Genu Dynastab Knee Brace With Bi-Axial Hinge, Grey # 2370 05",
+          "price": 19.0,
+          "url": "https://www.alessaonline.com/default/buy-thuasne-genu-dynastab-knee-brace-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Thuasne Ligaflex Knee Brace 2370",
+          "price": 19.0,
+          "url": "https://www.alessaonline.com/default/buy-thuasne-ligaflex-knee-brace-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Flamingo Soft Cervical Collar",
+          "price": 2.75,
+          "url": "https://www.alessaonline.com/default/buy-flamingo-soft-collar-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Genu Ligaflex  Knee Brace With Hinge (Closed Long)",
+          "price": 29.0,
+          "url": "https://www.alessaonline.com/default/buy-genu-ligaflex-knee-brace-with-hinge-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "M+D Forearm Crutches, Height Adjustable, Black ,Pair ,# MD10002Rev5",
+          "price": 35.0,
+          "url": "https://www.alessaonline.com/default/buy-md-forearm-crutches-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "sales_analysis",
+        "product_search"
+      ]
     }
   ],
   "created_at": "2025-07-16T12:03:57.541951",
-  "last_updated": "2025-07-16T12:04:01.771949",
+  "last_updated": "2025-07-16T12:11:54.651953",
   "agent_type": "sales",
   "user_context": {
-    "budget_conscious": true
+    "budget_conscious": true,
+    "interested_in": "braces/supports"
   }
 }
