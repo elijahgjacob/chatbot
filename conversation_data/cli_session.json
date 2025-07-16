@@ -119,10 +119,422 @@
       "workflow_steps": [
         "sales_conversation"
       ]
+    },
+    {
+      "role": "user",
+      "content": "hi",
+      "timestamp": "2025-07-16T17:30:08.094513",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Hello again! It seems like you might have sent a quick message there. If you have any specific questions or need assistance with the products I mentioned, just let me know!\n\nBased on our previous conversation, are you still considering braces or supports? If so, I can provide more details or help you narrow down your options based on what you need. What are you thinking?",
+      "timestamp": "2025-07-16T17:30:08.095048",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "hi",
+      "timestamp": "2025-07-16T17:31:22.050575",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "You: Hi there! I appreciate your quick response. Are you still interested in exploring braces or supports for scoliosis? If you have a particular type in mind or need more information on the Flamingo Soft Cervical Collar or the Thuasne knee braces, just let me know! I'm here to help you find the best option within your budget. What are you thinking?",
+      "timestamp": "2025-07-16T17:31:22.051055",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "no i need something else",
+      "timestamp": "2025-07-16T17:31:42.821081",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "You: I understand you're looking for something different. Could you share what specific features or types of braces or supports you have in mind? This way, I can help you find the best options that fit your needs and budget!",
+      "timestamp": "2025-07-16T17:31:42.821606",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "yes, i need a walker",
+      "timestamp": "2025-07-16T17:31:54.231998",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Here are the top options I found for your request:\n\n1. Al Essa Ca811L-5 Folding Walker - 11.0 KWD\n   https://www.alessaonline.com/default/default-buy-al-essa-walker-with-wheels-online-kuwait-html.html\n2. Al Essa Ca818L Folding Walker - 25.0 KWD\n   https://www.alessaonline.com/default/al-essa-ca818l-folding-walker.html\n3. Al Essa Ca811L Folding Walker - 10.0 KWD\n   https://www.alessaonline.com/default/al-essa-ca811l-folding-walker.html\n4. Thuasne TD Fix Walker Boot, Long - 39.0 KWD\n   https://www.alessaonline.com/default/thuasne-td-air-walker-boot-short-u08502.html\n5. MERITS Deluxe Aluminium Folding Walker Without Wheel(Bariatric)-Two Button # W140 - 19.0 KWD\n   https://www.alessaonline.com/default/buy-merits-deluxe-aluminium-folding-walker-online-kuwait.html\n\nIf you want more details about any of these, or need help choosing, just let me know!",
+      "timestamp": "2025-07-16T17:31:54.232648",
+      "agent_type": "sales",
+      "products": [
+        {
+          "name": "Al Essa Ca811L-5 Folding Walker",
+          "price": 11.0,
+          "url": "https://www.alessaonline.com/default/default-buy-al-essa-walker-with-wheels-online-kuwait-html.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Ca818L Folding Walker",
+          "price": 25.0,
+          "url": "https://www.alessaonline.com/default/al-essa-ca818l-folding-walker.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Ca811L Folding Walker",
+          "price": 10.0,
+          "url": "https://www.alessaonline.com/default/al-essa-ca811l-folding-walker.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Thuasne TD Fix Walker Boot, Long",
+          "price": 39.0,
+          "url": "https://www.alessaonline.com/default/thuasne-td-air-walker-boot-short-u08502.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "MERITS Deluxe Aluminium Folding Walker Without Wheel(Bariatric)-Two Button # W140",
+          "price": 19.0,
+          "url": "https://www.alessaonline.com/default/buy-merits-deluxe-aluminium-folding-walker-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Ca8244L-3 Folding, Children Walker",
+          "price": 19.0,
+          "url": "https://www.alessaonline.com/default/al-essa-ca8244l-3-folding-children-walker.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Thuasne Td Air Walker Boot-Long - # U08402",
+          "price": 29.0,
+          "url": "https://www.alessaonline.com/default/thuasne-td-air-walker-boot-long-u08402.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Drive Wa009 Folding Walker",
+          "price": 20.0,
+          "url": "https://www.alessaonline.com/default/default-buy-drive-walking-frame-with-wheels-online-kuwait-html.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Drive Wa008 Folding Walker",
+          "price": 18.0,
+          "url": "https://www.alessaonline.com/default/default-buy-drive-folding-walking-frame-online-kuwait-html.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Aluminum Walker Without Wheels, #HFK-9105A",
+          "price": 13.0,
+          "url": "https://www.alessaonline.com/default/default-buy-al-essa-aluminum-walker-without-wheels-online-kuwait-html.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Darco Air Traveler Walker, Low, Large # Ats3",
+          "price": 18.0,
+          "url": "https://www.alessaonline.com/default/darco-air-traveler-walker-low-large-ats3.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Ca824L-4 Aluminum Walker",
+          "price": 8.9,
+          "url": "https://www.alessaonline.com/default/al-essa-ca824l-4-aluminum-walker.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Aluminum Walker With Wheels, #HFK-9106",
+          "price": 15.0,
+          "url": "https://www.alessaonline.com/default/default-buy-al-essa-aluminum-walker-online-kuwait-html.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Aluminum Walker Without Wheels and Reinforced Flat H-Tube, #HFK-9105-1",
+          "price": 15.0,
+          "url": "https://www.alessaonline.com/default/default-buy-alessa-aluminum-walker-without-wheels-and-reinforced-flat-h-tube-online-hfk-9105-1-html.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "MERITS Deluxe Aluminium Folding Walker With 5\" Wheels(Bariatric)-Two Button # W144",
+          "price": 25.0,
+          "url": "https://www.alessaonline.com/default/buy-merits-deluxe-aluminium-folding-walker-with-5-whees-bariatric-two-button-online-w144.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Drive Nimbo Posterior Walker",
+          "price": 85.0,
+          "url": "https://www.alessaonline.com/default/buy-drive-nimbo-posterior-posture-walker-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_analysis",
+        "product_search"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "what are the differences between the top three products",
+      "timestamp": "2025-07-16T17:32:26.469099",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Here are the top options I found for your request:\n\n1. Dr. Comfort Full Top Grain Leather Trainer Shoes For Men-Champion (Winner) Black Velcro- Wide Size - 9.0 KWD\n   https://www.alessaonline.com/default/buy-dr-comfort-grain-leather-trainer-shoes-for-men-online-kuwait.html\n\nIf you want more details about any of these, or need help choosing, just let me know!",
+      "timestamp": "2025-07-16T17:32:26.469791",
+      "agent_type": "sales",
+      "products": [
+        {
+          "name": "Dr. Comfort Full Top Grain Leather Trainer Shoes For Men-Champion (Winner) Black Velcro- Wide Size",
+          "price": 9.0,
+          "url": "https://www.alessaonline.com/default/buy-dr-comfort-grain-leather-trainer-shoes-for-men-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_analysis",
+        "product_search"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "do you have kenkoh",
+      "timestamp": "2025-07-16T17:32:49.989552",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Here are the top options I found for your request:\n\n1. Kenkoh Sandal Male-Yamato Black - 59.0 KWD\n   https://www.alessaonline.com/default/buy-kenkoh-sandal-maleyamato-black-online-kuwait.html\n2. Kenkoh Genki Massage Sandals Unisex Black - 14.0 KWD\n   https://www.alessaonline.com/default/buy-kenkoh-genki-massage-sandals-online.html\n3. Kenkoh Nara Massage Sandals, Female, Silver - 14.0 KWD\n   https://www.alessaonline.com/default/buy-kenkoh-nara-massage-sandals-online-kuwait.html\n4. Kenkoh Musashi Massage Sandals For Men  Pair - # 3608 - 14.0 KWD\n   https://www.alessaonline.com/default/kenkoh-musashi-massage-sandals-for-men-pair-3608.html\n5. Kenkoh sandal Female- Kai-Black - 55.0 KWD\n   https://www.alessaonline.com/default/kenkoh-sandal-female-kai-black.html\n\nIf you want more details about any of these, or need help choosing, just let me know!",
+      "timestamp": "2025-07-16T17:32:49.990245",
+      "agent_type": "sales",
+      "products": [
+        {
+          "name": "Kenkoh Sandal Male-Yamato Black",
+          "price": 59.0,
+          "url": "https://www.alessaonline.com/default/buy-kenkoh-sandal-maleyamato-black-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Kenkoh Genki Massage Sandals Unisex Black",
+          "price": 14.0,
+          "url": "https://www.alessaonline.com/default/buy-kenkoh-genki-massage-sandals-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Kenkoh Nara Massage Sandals, Female, Silver",
+          "price": 14.0,
+          "url": "https://www.alessaonline.com/default/buy-kenkoh-nara-massage-sandals-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Kenkoh Musashi Massage Sandals For Men  Pair - # 3608",
+          "price": 14.0,
+          "url": "https://www.alessaonline.com/default/kenkoh-musashi-massage-sandals-for-men-pair-3608.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Kenkoh sandal Female- Kai-Black",
+          "price": 55.0,
+          "url": "https://www.alessaonline.com/default/kenkoh-sandal-female-kai-black.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Kenkoh Sandal Male-Osaka Black",
+          "price": 50.0,
+          "url": "https://www.alessaonline.com/default/buy-kenkoh-sandal-male-osaka-black-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Kenkoh Sendai Massage Sandals For Men, Pair # 3619",
+          "price": 59.0,
+          "url": "https://www.alessaonline.com/default/buy-kenkoh-sendai-massage-sandals-for-men-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_analysis",
+        "product_search"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "i want sandals",
+      "timestamp": "2025-07-16T17:33:03.273279",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Here are the top options I found for your request:\n\n1. Kenkoh Kobe Massage Sandals, Male - 55.0 KWD\n   https://www.alessaonline.com/default/buy-kenkoh-kobe-massage-sandals-male-online-kuwait.html\n2. Kenkoh Nara Massage Sandals, Female, Silver - 14.0 KWD\n   https://www.alessaonline.com/default/buy-kenkoh-nara-massage-sandals-online-kuwait.html\n3. Kenkoh Musashi Massage Sandals For Men  Pair - # 3608 - 14.0 KWD\n   https://www.alessaonline.com/default/kenkoh-musashi-massage-sandals-for-men-pair-3608.html\n4. Kenkoh Sendai Massage Sandals For Men, Pair # 3619 - 59.0 KWD\n   https://www.alessaonline.com/default/buy-kenkoh-sendai-massage-sandals-for-men-online-kuwait.html\n5. Kenkoh Genki Massage Sandals Unisex Black - 14.0 KWD\n   https://www.alessaonline.com/default/buy-kenkoh-genki-massage-sandals-online.html\n\nIf you want more details about any of these, or need help choosing, just let me know!",
+      "timestamp": "2025-07-16T17:33:03.274043",
+      "agent_type": "sales",
+      "products": [
+        {
+          "name": "Kenkoh Kobe Massage Sandals, Male",
+          "price": 55.0,
+          "url": "https://www.alessaonline.com/default/buy-kenkoh-kobe-massage-sandals-male-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Kenkoh Nara Massage Sandals, Female, Silver",
+          "price": 14.0,
+          "url": "https://www.alessaonline.com/default/buy-kenkoh-nara-massage-sandals-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Kenkoh Musashi Massage Sandals For Men  Pair - # 3608",
+          "price": 14.0,
+          "url": "https://www.alessaonline.com/default/kenkoh-musashi-massage-sandals-for-men-pair-3608.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Kenkoh Sendai Massage Sandals For Men, Pair # 3619",
+          "price": 59.0,
+          "url": "https://www.alessaonline.com/default/buy-kenkoh-sendai-massage-sandals-for-men-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Kenkoh Genki Massage Sandals Unisex Black",
+          "price": 14.0,
+          "url": "https://www.alessaonline.com/default/buy-kenkoh-genki-massage-sandals-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Kenkoh Reiki Massage Sandals For Women  Size  Pair - # 2327",
+          "price": 14.0,
+          "url": "https://www.alessaonline.com/default/kenkoh-reiki-massage-sandals-for-women-size-pair-2327.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Kenkoh Miyabi Massage Sandals For Women",
+          "price": 59.0,
+          "url": "https://www.alessaonline.com/default/buy-kenkoh-miyabi-massage-sandals-for-women-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_analysis",
+        "product_search"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "less than 20 kd",
+      "timestamp": "2025-07-16T17:33:32.973825",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Here are the top options I found for your request:\n\n1. LIGAFLEX IMMO SHORT SPLINT 20 DEG - H60- 2420 - 16.0 KWD\n   https://www.alessaonline.com/default/buy-ligaflex-immo-short-splint-online.html\n2. Dura Cold/Hot Back Compress Gel Pack  - # DU-SP-7212 - 6.5 KWD\n   https://www.alessaonline.com/default/dura-cold-hot-back-compress-gel-pack-du-sp-7212.html\n3. Thuasne Ligaflex Immo Knee Splint, Short, 20 Degree, Height 50 cm #2420 03 - 12.0 KWD\n   https://www.alessaonline.com/default/thuasne-ligaflex-immo-knee-splint-short-20-degree-height-50-cm-2420-03.html\n4. Genu Ligaflex Rom Knee Brace  Open - 59.0 KWD\n   https://www.alessaonline.com/default/buy-ligaflex-knee-brace-online.html\n5. Thuasne Wrist Support Ligaflex Manu Black Left 2430 - 14.0 KWD\n   https://www.alessaonline.com/default/buy-thuasne-wrist-support-ligaflex-online.html\n\nIf you want more details about any of these, or need help choosing, just let me know!",
+      "timestamp": "2025-07-16T17:33:32.974743",
+      "agent_type": "sales",
+      "products": [
+        {
+          "name": "LIGAFLEX IMMO SHORT SPLINT 20 DEG - H60- 2420",
+          "price": 16.0,
+          "url": "https://www.alessaonline.com/default/buy-ligaflex-immo-short-splint-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Dura Cold/Hot Back Compress Gel Pack  - # DU-SP-7212",
+          "price": 6.5,
+          "url": "https://www.alessaonline.com/default/dura-cold-hot-back-compress-gel-pack-du-sp-7212.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Thuasne Ligaflex Immo Knee Splint, Short, 20 Degree, Height 50 cm #2420 03",
+          "price": 12.0,
+          "url": "https://www.alessaonline.com/default/thuasne-ligaflex-immo-knee-splint-short-20-degree-height-50-cm-2420-03.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Genu Ligaflex Rom Knee Brace  Open",
+          "price": 59.0,
+          "url": "https://www.alessaonline.com/default/buy-ligaflex-knee-brace-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Thuasne Wrist Support Ligaflex Manu Black Left 2430",
+          "price": 14.0,
+          "url": "https://www.alessaonline.com/default/buy-thuasne-wrist-support-ligaflex-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "sales_analysis",
+        "product_search"
+      ]
     }
   ],
   "created_at": "2025-07-16T12:03:57.541951",
-  "last_updated": "2025-07-16T12:15:34.891509",
+  "last_updated": "2025-07-16T17:33:32.975976",
   "agent_type": "sales",
   "user_context": {
     "budget_conscious": true,
