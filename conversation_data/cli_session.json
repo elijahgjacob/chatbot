@@ -323,10 +323,67 @@
       "workflow_steps": [
         "sales_conversation"
       ]
+    },
+    {
+      "role": "user",
+      "content": "hi",
+      "timestamp": "2025-07-16T05:08:14.208188",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Hi there! I appreciate your interest in finding a budget-friendly wheelchair. I’ll focus on locating the most affordable options for you. \n\nLet me check if I can find the cheapest **Sunrise wheelchair** available, or if there are any other brands that might fit your budget just as well. Do you have a specific price range in mind, or should I just look for the most cost-effective options?",
+      "timestamp": "2025-07-16T05:08:14.208935",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "yes",
+      "timestamp": "2025-07-16T05:08:21.560621",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Hi again! Thanks for your patience. I’m currently looking into the most affordable options for you. \n\nWould you like me to focus solely on Sunrise wheelchairs, or are you open to exploring other brands that may offer budget-friendly models as well? Let me know your preference!",
+      "timestamp": "2025-07-16T05:08:21.561456",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "only sunrise",
+      "timestamp": "2025-07-16T05:08:31.449773",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "I'm sorry, I couldn't find any products matching your request. Please try rephrasing your query or ask about a different product.",
+      "timestamp": "2025-07-16T05:08:31.450643",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "sales_analysis",
+        "product_search"
+      ]
     }
   ],
   "created_at": "2025-07-16T04:55:42.094275",
-  "last_updated": "2025-07-16T05:06:12.711958",
+  "last_updated": "2025-07-16T05:08:31.450650",
   "agent_type": "sales",
   "user_context": {
     "budget_conscious": true
