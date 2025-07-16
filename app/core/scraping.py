@@ -52,7 +52,7 @@ class ProductScraper:
     """Scraper for medical equipment products"""
     
     def __init__(self, 
-                 base_url: str = "https://alessa.com.kw",
+                 base_url: str = "https://www.alessaonline.com",
                  user_agent: str = "",
                  timeout: int = 10,
                  max_retries: int = 3,
@@ -98,10 +98,10 @@ class ProductScraper:
     def build_search_url(self, query: str, page: int = 1) -> str:
         """Build search URL for Al Essa Kuwait website."""
         search_term = re.sub(r'[^a-zA-Z0-9 ]', '', query).strip().replace(' ', '+')
-        # Al Essa Kuwait uses Shopify search format
-        url = f"{self.base_url}/search?q={search_term}&type=product"
+        # Al Essa Kuwait uses Magento search format
+        url = f"{self.base_url}/default/catalogsearch/result/?q={search_term}"
         if page > 1:
-            url += f"&page={page}"
+            url += f"&p={page}"
         return url
 
     def parse_price(self, price_str: str) -> Optional[float]:
@@ -128,16 +128,16 @@ class ProductScraper:
             return None
 
     def parse_products(self, soup: BeautifulSoup) -> List[Dict[str, Any]]:
-        """Parse products from Al Essa Kuwait Shopify website."""
+        """Parse products from Al Essa Kuwait Magento website."""
         products = []
         
-        # Al Essa Kuwait Shopify structure - try multiple selectors
+        # Al Essa Kuwait Magento structure - try multiple selectors
         product_selectors = [
-            'div.product-card',
-            'div[data-product-id]',
-            'article.product-card',
-            '.grid__item .card',
-            '.product-item'
+            '.product-item',
+            '.item.product',
+            '.product',
+            '[data-product-id]',
+            '.product-info'
         ]
         
         for selector in product_selectors:
@@ -152,14 +152,15 @@ class ProductScraper:
         
         for product in product_elements:
             try:
-                # Try multiple name selectors for Shopify structure
+                # Try multiple name selectors for Magento structure
                 name_selectors = [
-                    'h3.card__heading a',
-                    '.card__information h3 a',
-                    '.product-card__title a',
-                    'h2 a',
+                    '.product-item-name a',
+                    '.product-name a',
+                    'h2.product-name a',
                     'h3 a',
-                    'a[href*="/products/"]'
+                    'h2 a',
+                    'a[href*="/product"]',
+                    'a[href*="/default/catalog/product"]'
                 ]
                 
                 name_tag = None
@@ -168,14 +169,14 @@ class ProductScraper:
                     if name_tag:
                         break
                 
-                # Try multiple price selectors
+                # Try multiple price selectors for Magento
                 price_selectors = [
-                    '.price .money',
-                    '.card__price .money',
-                    '.product-card__price .money',
-                    '[class*="price"] .money',
+                    '.price-box .price',
                     '.price',
-                    '[data-price]'
+                    '.special-price .price',
+                    '.regular-price .price',
+                    '[data-price-type] .price',
+                    '.price-wrapper .price'
                 ]
                 
                 price_tag = None
@@ -195,8 +196,19 @@ class ProductScraper:
                         url = f"{self.base_url}{url}"
                     
                     # Extract vendor/brand if available
-                    vendor_tag = product.select_one('.card__vendor, .product-card__vendor, [class*="vendor"]')
-                    vendor = vendor_tag.get_text(strip=True) if vendor_tag else ""
+                    vendor_selectors = [
+                        '.product-item-brand',
+                        '.brand',
+                        '.manufacturer',
+                        '[data-brand]'
+                    ]
+                    
+                    vendor = ""
+                    for vendor_sel in vendor_selectors:
+                        vendor_tag = product.select_one(vendor_sel)
+                        if vendor_tag:
+                            vendor = vendor_tag.get_text(strip=True)
+                            break
                     
                     if name and price is not None:
                         products.append({
