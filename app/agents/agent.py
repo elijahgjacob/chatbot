@@ -3,7 +3,11 @@ ChatbotAgent implementation for the agentic workflow.
 """
 
 from typing import Dict, List, Any
-from app.tools.tools import ProductSearchTool, ResponseFilterTool, QueryRefinementTool
+from app.tools.product_search import product_search_tool
+from app.tools.response_filter import response_filter_tool
+from app.tools.query_refinement import query_refinement_tool
+
+AVAILABLE_TOOLS = [product_search_tool, response_filter_tool, query_refinement_tool]
 
 class ChatbotAgent:
     """Agent for processing queries with tools."""
@@ -12,11 +16,7 @@ class ChatbotAgent:
         """Initialize the agent with tools and memory."""
         self.memory = []
         self.prompt = "You are a helpful assistant that can search for products and provide information."
-        
-        # Initialize tools for test compatibility
-        self.product_search_tool = ProductSearchTool()
-        self.response_filter_tool = ResponseFilterTool()
-        self.query_refinement_tool = QueryRefinementTool()
+        self.tools = AVAILABLE_TOOLS
     
     def process_query(self, query: str, session_id: str = "default") -> Dict[str, Any]:
         """
