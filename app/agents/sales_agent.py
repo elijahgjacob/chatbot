@@ -127,16 +127,31 @@ class SalesAgent:
                 workflow_steps.extend(["sales_analysis", "product_search"])
                 
                 # Search for products
+                logger.info(f"Searching for products with query: {query}")
                 search_result = product_search_tool.invoke({"query": query})
                 products = search_result.get("products", [])
+                logger.info(f"Found {len(products)} products for query: {query}")
                 
-                # Generate sales-focused response with context
-                final_messages = [
-                    SystemMessage(content=SALES_AGENT_PROMPT),
-                    HumanMessage(content=f"Customer query: {query}\nConversation history: {history}\nProducts found: {products}\nGenerate a conversational, sales-focused response that references previous context and presents these products professionally.")
-                ]
-                final_response = llm.invoke(final_messages)
-                reply = final_response.content
+                # If no products found, reply directly
+                if not products:
+                    reply = (
+                        "I'm sorry, I couldn't find any products matching your request. "
+                        "Please try rephrasing your query or ask about a different product."
+                    )
+                else:
+                    # Format the product list directly (no LLM hallucination)
+                    product_lines = []
+                    for i, product in enumerate(products[:5], 1):
+                        name = product.get("name", "Unknown Product")
+                        price = product.get("price", "N/A")
+                        url = product.get("url", "")
+                        product_lines.append(f"{i}. {name} - {price} KWD\n   {url}")
+                    product_list = "\n".join(product_lines)
+                    reply = (
+                        f"Here are the top options I found for your request:\n\n{product_list}\n\n"
+                        "If you want more details about any of these, or need help choosing, just let me know!"
+                    )
+                
             else:
                 # General sales conversation
                 workflow_steps.append("sales_conversation")
