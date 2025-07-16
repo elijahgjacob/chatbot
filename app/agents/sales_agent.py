@@ -90,13 +90,13 @@ class SalesAgent:
             # Let the LLM decide if product search is needed
             # Ask the LLM to analyze the query and determine if products should be searched
             decision_prompt = f"""
-            Analyze this customer query: "{query}"
+            Analyze this customer query: \"{query}\"
             
             Should I search for products? Answer SEARCH if:
             - Customer asks about specific products, brands, or models
             - Customer asks about pricing, costs, or availability
-            - Customer asks "do you have", "show me", "looking for"
-            - Customer mentions specific brands like "Sunrise", "Drive", etc.
+            - Customer asks \"do you have\", \"show me\", \"looking for\"
+            - Customer mentions specific brands like \"Sunrise\", \"Drive\", etc.
             - Customer asks about cheapest, most expensive, or price comparisons
             - Customer needs product recommendations or options
             
@@ -105,7 +105,7 @@ class SalesAgent:
             - Customer asks general questions not related to products
             - Customer asks about policies, services, or non-product topics
             
-            Respond with ONLY: "SEARCH" or "CONVERSATION"
+            Respond with ONLY: \"SEARCH\" or \"CONVERSATION\"
             """
             
             decision_messages = [
@@ -132,12 +132,41 @@ class SalesAgent:
                 products = search_result.get("products", [])
                 logger.info(f"Found {len(products)} products for query: {query}")
                 
-                # If no products found, reply directly
+                # If no products found, ask LLM for alternatives
                 if not products:
-                    reply = (
-                        "I'm sorry, I couldn't find any products matching your request. "
-                        "Please try rephrasing your query or ask about a different product."
-                    )
+                    alt_prompt = f"""
+                    The customer asked for: '{query}' but no products were found in the catalog.
+                    Based on your knowledge of medical equipment and our store, what alternative or related products should I suggest?
+                    Respond with a single search query or a comma-separated list of related product types/keywords.
+                    """
+                    alt_messages = [
+                        SystemMessage(content=SALES_AGENT_PROMPT),
+                        HumanMessage(content=alt_prompt)
+                    ]
+                    alt_response = llm.invoke(alt_messages)
+                    alt_query = alt_response.content.strip().split("\n")[0]
+                    logger.info(f"LLM suggested alternative search: {alt_query}")
+                    alt_search_result = product_search_tool.invoke({"query": alt_query})
+                    alt_products = alt_search_result.get("products", [])
+                    if alt_products:
+                        product_lines = []
+                        for i, product in enumerate(alt_products[:5], 1):
+                            name = product.get("name", "Unknown Product")
+                            price = product.get("price", "N/A")
+                            url = product.get("url", "")
+                            product_lines.append(f"{i}. {name} - {price} KWD\n   {url}")
+                        product_list = "\n".join(product_lines)
+                        reply = (
+                            f"I'm sorry, I couldn't find any products matching your request. "
+                            f"However, here are some similar or related products you might be interested in (based on your request):\n\n{product_list}\n\n"
+                            "If you want more details about any of these, or need help choosing, just let me know!"
+                        )
+                        products = alt_products
+                    else:
+                        reply = (
+                            "I'm sorry, I couldn't find any products matching your request, nor any suitable alternatives. "
+                            "Please try rephrasing your query or ask about a different product."
+                        )
                 else:
                     # Format the product list directly (no LLM hallucination)
                     product_lines = []
