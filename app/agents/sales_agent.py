@@ -8,6 +8,9 @@ from app.core.conversation_memory import conversation_memory
 from app.tools.product_search import product_search_tool
 from app.tools.response_filter import response_filter_tool
 from langchain.schema import HumanMessage, SystemMessage
+import logging
+
+logger = logging.getLogger(__name__)
 
 SALES_AGENT_PROMPT = """You are a professional sales representative for Al Essa Kuwait, specializing in medical equipment and home appliances.
 
@@ -87,23 +90,38 @@ class SalesAgent:
             # Let the LLM decide if product search is needed
             # Ask the LLM to analyze the query and determine if products should be searched
             decision_prompt = f"""
-            Based on the customer query: "{query}"
+            Analyze this customer query: "{query}"
             
-            Should I search for products? Consider:
-            - Are they asking about specific products, brands, or prices?
-            - Are they looking for availability or recommendations?
-            - Do they need product information to answer their question?
+            Should I search for products? Answer SEARCH if:
+            - Customer asks about specific products, brands, or models
+            - Customer asks about pricing, costs, or availability
+            - Customer asks "do you have", "show me", "looking for"
+            - Customer mentions specific brands like "Sunrise", "Drive", etc.
+            - Customer asks about cheapest, most expensive, or price comparisons
+            - Customer needs product recommendations or options
+            
+            Answer CONVERSATION if:
+            - Customer says hello, asks how I am, or general greetings
+            - Customer asks general questions not related to products
+            - Customer asks about policies, services, or non-product topics
             
             Respond with ONLY: "SEARCH" or "CONVERSATION"
             """
             
             decision_messages = [
-                SystemMessage(content="You are a decision-making assistant. Respond with ONLY 'SEARCH' or 'CONVERSATION' based on whether the customer needs product information."),
+                SystemMessage(content="You are a decision-making assistant. Your job is to determine if a customer needs product information. Respond with ONLY 'SEARCH' or 'CONVERSATION'."),
                 HumanMessage(content=decision_prompt)
             ]
             
             decision_response = llm.invoke(decision_messages)
             should_search = "SEARCH" in decision_response.content.upper()
+            
+            # Fallback: if LLM decision is unclear, check for obvious product keywords
+            if not should_search:
+                obvious_product_terms = ["wheelchair", "walker", "brace", "sunrise", "drive", "cheapest", "price", "cost", "do you have", "show me", "looking for"]
+                if any(term in query.lower() for term in obvious_product_terms):
+                    should_search = True
+                    logger.info(f"Fallback: Forcing product search for query: {query}")
             
             if should_search:
                 workflow_steps.extend(["sales_analysis", "product_search"])
