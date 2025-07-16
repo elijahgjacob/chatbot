@@ -1,108 +1,200 @@
-# FastAPI Chatbot with OpenAI & Web Scraping
+# Al Essa Kuwait Virtual Assistant
 
-This project is a chatbot backend using Python, FastAPI, OpenAI LLMs, and web scraping for product information.
+A sophisticated AI-powered chatbot for Al Essa Kuwait, specializing in medical equipment, home appliances, and technology products. Built with FastAPI, OpenAI LLMs, and intelligent agent routing.
 
-## Features
-- FastAPI backend with `/chat` and `/scrape-prices` endpoints
-- OpenAI LLM (GPT-3.5/4) for intelligent responses
-- Web scraping for real-time product and price information
-- Chat history support with session management
-- Comprehensive logging and error handling
-- Full test suite with mocked HTTP calls
+## 🌟 Features
 
-## Requirements
+### 🤖 **Intelligent Agent System**
+- **Sales Agent**: Expert product recommendations and customer service
+- **Doctor Agent**: Medical advice and symptom-based product suggestions
+- **Intelligent Router**: LLM-driven query routing between specialized agents
+- **Conversation Memory**: Maintains context across chat sessions
+
+### 🛍️ **Live Product Integration**
+- **Real-time Scraping**: Live product data from [Al Essa Kuwait](https://www.alessaonline.com)
+- **LLM-Driven Alternatives**: Intelligent product suggestions when exact matches aren't found
+- **Price & Availability**: Real-time pricing in Kuwaiti Dinars (KWD)
+- **Product Categories**: Medical equipment, home appliances, technology, engineering solutions
+
+### 💬 **Advanced Conversation**
+- **Context Awareness**: Remembers previous conversations and user preferences
+- **Natural Language**: Human-like responses with sales expertise
+- **Multi-language Support**: English and Arabic capabilities
+- **Personalized Recommendations**: Tailored suggestions based on user needs
+
+### 🏥 **Medical Knowledge**
+- **Virtual Doctor**: Basic medical advice and symptom analysis
+- **Product Recommendations**: Medical equipment suggestions based on symptoms
+- **Safety Disclaimers**: Always recommends consulting healthcare professionals
+- **Emergency Awareness**: Recognizes urgent medical situations
+
+## 🚀 Quick Start
+
+### Prerequisites
 - Python 3.9+
 - OpenAI API key
 
-## Setup
+### Installation
 
-1. **Clone the repo and install dependencies:**
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/elijahgjacob/chatbot.git
+   cd chatbot
+   ```
+
+2. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Configure environment variables:**
-   - Copy `.env.example` to `.env` and fill in your credentials:
-     ```
-     OPENAI_API_KEY=your_openai_api_key_here
-     ```
+3. **Configure environment:**
+   ```bash
+   cp .env.example .env
+   # Edit .env and add your OpenAI API key
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
 
-## Running the Server
+4. **Run the server:**
+   ```bash
+   uvicorn app.api.main:app --reload
+   ```
 
-```bash
-uvicorn main:app --reload
-```
+The server will start on `http://localhost:8000`
 
-The server will start on `http://localhost:8000`.
-
-## API Endpoints
+## 📡 API Endpoints
 
 ### `/chat` (POST)
-Send a message to the chatbot:
+Main chat endpoint with intelligent agent routing:
 ```json
 {
-  "text": "What are your wheelchair options?",
-  "session_id": "optional_session_id"
+  "text": "I need a wheelchair for my grandmother",
+  "session_id": "user_123"
 }
 ```
 
 Response:
 ```json
 {
-  "reply": "AI-powered response with product information if relevant...",
+  "reply": "I'd be happy to help you find the perfect wheelchair for your grandmother! Let me search our collection...",
   "products": [
     {
-      "name": "Product Name",
-      "price": "$299.99",
-      "link": "https://example.com/product"
+      "name": "Drive Medical Lightweight Wheelchair",
+      "price": 85.0,
+      "url": "https://www.alessaonline.com/product-url",
+      "currency": "KWD"
     }
-  ]
+  ],
+  "workflow_steps": ["intelligent_routing", "sales_analysis", "product_search"],
+  "success": true
 }
 ```
 
 ### `/scrape-prices` (POST)
-Directly scrape product information:
+Direct product search endpoint:
 ```json
 {
-  "query": "wheelchair"
+  "query": "ice pack"
 }
 ```
 
-### `/chat-history/{session_id}` (GET)
-Get chat history for a session.
+### `/health` (GET)
+Health check endpoint.
 
-### `/chat-history/{session_id}` (DELETE)
-Clear chat history for a session.
+## 🎯 Usage Examples
 
-## Usage Examples
-
-You can use [httpie](https://httpie.io/), [curl](https://curl.se/), or Postman:
+### CLI Interface
 ```bash
-# Chat with the bot
-http POST http://localhost:8000/chat text="Tell me about crutches"
-
-# Scrape product prices
-http POST http://localhost:8000/scrape-prices query="wheelchair"
+python chatbot_cli.py
 ```
 
-## Testing
-Run the test suite:
+### API Usage
 ```bash
-pytest test_main.py -v
+# Chat with the assistant
+curl -X POST http://localhost:8000/chat \
+  -H "Content-Type: application/json" \
+  -d '{"text": "What medical equipment do you have for back pain?", "session_id": "user_123"}'
+
+# Search for specific products
+curl -X POST http://localhost:8000/scrape-prices \
+  -H "Content-Type: application/json" \
+  -d '{"query": "wheelchair"}'
 ```
 
-## Project Structure
+## 🏗️ Architecture
+
+### Agent System
 ```
-├── main.py              # FastAPI app and endpoints
-├── config.py            # Environment configuration
-├── logging_config.py    # Logging setup
-├── prompts.py           # System prompts
-├── llm.py              # LLM integration
-├── scraping.py         # Web scraping logic
-├── test_main.py        # Test suite
-├── requirements.txt    # Dependencies
-└── .env.example       # Environment template
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   User Query    │───▶│  Agent Router   │───▶│  Sales Agent    │
+│                 │    │   (LLM-based)   │    │                 │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                                │
+                                ▼
+                       ┌─────────────────┐
+                       │  Doctor Agent   │
+                       │                 │
+                       └─────────────────┘
 ```
 
-## License
-MIT
+### Key Components
+- **`app/agents/`**: Agent implementations and routing logic
+- **`app/core/`**: Core functionality (LLM, scraping, memory)
+- **`app/tools/`**: Tool implementations for product search
+- **`app/api/`**: FastAPI endpoints and request handling
+
+## 🧪 Testing
+
+Run the comprehensive test suite:
+```bash
+# Run all tests
+pytest tests/ -v
+
+# Run specific test categories
+pytest tests/test_agents.py -v
+pytest tests/test_scraping.py -v
+pytest tests/test_main.py -v
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+```bash
+OPENAI_API_KEY=your_openai_api_key
+OPENAI_MODEL=gpt-4o-mini  # Default model
+```
+
+### Agent Configuration
+- **Sales Agent**: Configured for Al Essa Kuwait product knowledge
+- **Doctor Agent**: Medical advice with safety disclaimers
+- **Router**: LLM-driven decision making for query routing
+
+## 🌐 Integration with Al Essa Kuwait
+
+This chatbot integrates with the [Al Essa Kuwait website](https://www.alessaonline.com) to provide:
+- **Live Product Data**: Real-time scraping of product information
+- **Accurate Pricing**: Current prices in Kuwaiti Dinars
+- **Product Availability**: Up-to-date stock information
+- **Direct Links**: Direct product URLs for easy access
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Submit a pull request
+
+## 📄 License
+
+MIT License - see LICENSE file for details
+
+## 🆘 Support
+
+For support or questions about Al Essa Kuwait products, visit:
+- **Website**: [https://www.alessaonline.com](https://www.alessaonline.com)
+- **Email**: Contact through the Al Essa Kuwait website
+- **Phone**: Available on the Al Essa Kuwait website
+
+---
+
+**Built with ❤️ for Al Essa Kuwait customers**
