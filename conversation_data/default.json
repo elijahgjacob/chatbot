@@ -228,10 +228,65 @@
         "symptom_analysis",
         "product_recommendation"
       ]
+    },
+    {
+      "role": "user",
+      "content": "i need some help to find some product that can help me with scoliosis",
+      "timestamp": "2025-07-16T12:22:23.494526",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "It sounds like you’re looking for products to help manage your scoliosis symptoms. Based on our previous conversations, here are some supportive products that may help alleviate discomfort and support your back:\n\n1. **[BACK Brace for Back](https://www.alessaonline.com/default/buy-back-brace-for-back-online-kuwait.html)** - This brace can provide support to your back, helping to reduce discomfort associated with scoliosis. **Price: 7.0 KWD**\n\n2. **[Thuasne Back Support Lombax](https://www.alessaonline.com/default/buy-thuasne-back-support-lombax-online-kuwait.html)** - Designed to stabilize the lower back, this support belt can help manage symptoms. **Price: 19.0 KWD**\n\n3. **[Flamingo Clavicle Brace](https://www.alessaonline.com/default/buy-flamingo-clavicle-brace-online-kuwait.html)** - This brace may assist in improving posture, which can be beneficial for individuals with scoliosis. **Price: 5.0 KWD**\n\n4. **[Thuasne Dorso Rigid 35 High Back Belt](https://www.alessaonline.com/default/buy-thuasne-dorso-high-back-belt-online.html)** - A high back support designed for more rigid support, ideal for managing moderate to severe symptoms. **Price: 65.0 KWD**\n\n5. **[Thuasne Back Support Lombacross Activity H21 Lumbar Support Belt](https://www.alessaonline.com/default/buy-thuasne-back-support-lombacross-activity-online-kuwait.html)** - This lumbar support belt provides additional comfort during daily activities. **Price: 19.0 KWD**\n\n**Disclaimer**: While these products may assist in managing your symptoms, they do not replace professional medical care. It's essential to consult with a healthcare professional for a proper diagnosis and tailored treatment plan, especially if you are experiencing significant pain or mobility issues. \n\nCould you please share more about any specific symptoms you are experiencing, such as pain levels or any mobility concerns? This will help me provide more personalized recommendations for your situation.",
+      "timestamp": "2025-07-16T12:22:23.495212",
+      "agent_type": "doctor",
+      "products": [
+        {
+          "name": "BACK Brace for Back",
+          "price": 7.0,
+          "url": "https://www.alessaonline.com/default/buy-back-brace-for-back-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Thuasne Back Support Lombax - 26Cm 0824",
+          "price": 19.0,
+          "url": "https://www.alessaonline.com/default/buy-thuasne-back-support-lombax-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Flamingo Clavicle Brace - # OC-2018",
+          "price": 5.0,
+          "url": "https://www.alessaonline.com/default/buy-flamingo-clavicle-brace-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Thuasne Dorso Rigid 35 High Back Belt White - # 089001",
+          "price": 65.0,
+          "url": "https://www.alessaonline.com/default/buy-thuasne-dorso-high-back-belt-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Thuasne Back Support Lombacross Activity H21 Lumbar Support Belt Black - # 0836",
+          "price": 19.0,
+          "url": "https://www.alessaonline.com/default/buy-thuasne-back-support-lombacross-activity-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "symptom_analysis",
+        "product_recommendation"
+      ]
     }
   ],
   "created_at": "2025-07-16T12:10:56.559019",
-  "last_updated": "2025-07-16T12:13:49.422139",
+  "last_updated": "2025-07-16T12:22:23.495219",
   "agent_type": "doctor",
   "user_context": {}
 }

@@ -48,6 +48,11 @@ Respond with ONLY one word: either "SALES" or "DOCTOR"
 - "What's the cheapest wheelchair?" → SALES
 - "Sunrise brand products" → SALES
 - "Cheapest option" → SALES
+- "I have scoliosis" → DOCTOR
+- "Help me with back pain" → DOCTOR
+- "I need products for my medical condition" → DOCTOR
+- "What can help with my spine problem?" → DOCTOR
+- "I need medical equipment for my condition" → DOCTOR
 
 Use your judgment to determine the most appropriate agent based on the user's intent."""
 
