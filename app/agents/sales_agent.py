@@ -92,18 +92,23 @@ class SalesAgent:
             decision_prompt = f"""
             Analyze this customer query: \"{query}\"
             
-            Should I search for products? Answer SEARCH if:
-            - Customer asks about specific products, brands, or models
-            - Customer asks about pricing, costs, or availability
-            - Customer asks \"do you have\", \"show me\", \"looking for\"
-            - Customer mentions specific brands like \"Sunrise\", \"Drive\", etc.
-            - Customer asks about cheapest, most expensive, or price comparisons
-            - Customer needs product recommendations or options
+            Should I search for products? Answer SEARCH ONLY if:
+            - Customer explicitly asks about specific products, brands, or models
+            - Customer asks about pricing, costs, or availability of products
+            - Customer asks \"do you have [product]\", \"show me [product]\", \"looking for [product]\"
+            - Customer mentions specific medical equipment brands like \"Sunrise\", \"Drive\", etc.
+            - Customer asks about cheapest, most expensive, or price comparisons of products
+            - Customer clearly needs product recommendations or options
             
             Answer CONVERSATION if:
             - Customer says hello, asks how I am, or general greetings
             - Customer asks general questions not related to products
             - Customer asks about policies, services, or non-product topics
+            - Customer makes general statements or comments
+            - Query is ambiguous or could be either conversation or product-related
+            - Customer uses generic terms that could refer to anything
+            
+            Be conservative - if in doubt, choose CONVERSATION.
             
             Respond with ONLY: \"SEARCH\" or \"CONVERSATION\"
             """
@@ -116,12 +121,8 @@ class SalesAgent:
             decision_response = llm.invoke(decision_messages)
             should_search = "SEARCH" in decision_response.content.upper()
             
-            # Fallback: if LLM decision is unclear, check for obvious product keywords
-            if not should_search:
-                obvious_product_terms = ["wheelchair", "walker", "brace", "sunrise", "drive", "cheapest", "price", "cost", "do you have", "show me", "looking for", "ice", "icepack", "ice pack", "cold", "hot", "gel", "pack"]
-                if any(term in query.lower() for term in obvious_product_terms):
-                    should_search = True
-                    logger.info(f"Fallback: Forcing product search for query: {query}")
+            # Trust the LLM's decision completely - no hardcoded fallback logic
+            logger.info(f"LLM decision for query '{query}': {'SEARCH' if should_search else 'CONVERSATION'}")
             
             if should_search:
                 workflow_steps.extend(["sales_analysis", "product_search"])
