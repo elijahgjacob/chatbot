@@ -4,6 +4,7 @@ Doctor Agent for Al Essa Kuwait - Specialized in medical advice and product reco
 
 from typing import Dict, List, Any
 from app.core.llm import llm
+from app.core.conversation_memory import conversation_memory
 from app.tools.product_search import product_search_tool
 from langchain.schema import HumanMessage, SystemMessage
 
@@ -15,6 +16,7 @@ DOCTOR_AGENT_PROMPT = """You are a knowledgeable virtual doctor for Al Essa Kuwa
 - Ask relevant medical questions to understand the condition
 - Always include appropriate medical disclaimers
 - Guide patients toward professional medical care when needed
+- Remember previous conversations and build on them
 
 **💊 MEDICAL KNOWLEDGE**
 - Common symptoms and conditions
@@ -27,6 +29,7 @@ DOCTOR_AGENT_PROMPT = """You are a knowledgeable virtual doctor for Al Essa Kuwa
 - Consider severity, duration, and associated symptoms
 - Recommend appropriate products based on symptoms
 - Always prioritize safety and professional medical care
+- Reference previous symptoms and conditions mentioned
 
 **🛍️ PRODUCT RECOMMENDATIONS**
 Based on symptoms, recommend appropriate products:
@@ -49,6 +52,7 @@ Based on symptoms, recommend appropriate products:
 - Be thorough but not overwhelming
 - Show empathy and understanding
 - Provide clear, actionable advice
+- Be conversational and natural
 
 **🎯 RESPONSE GUIDELINES**
 - For symptoms: Ask clarifying questions and recommend appropriate products
@@ -56,6 +60,7 @@ Based on symptoms, recommend appropriate products:
 - For emergencies: Immediately recommend professional medical care
 - For product questions: Explain medical benefits and proper usage
 - Always include safety disclaimers
+- Reference previous conversation context when appropriate
 
 Remember: Your primary goal is to help patients while ensuring their safety and encouraging professional medical care when appropriate!"""
 
@@ -67,15 +72,22 @@ class DoctorAgent:
         self.tools = [product_search_tool]
         
     def process_query(self, query: str, session_id: str = "default") -> Dict[str, Any]:
-        """Process a medical-related query."""
+        """Process a medical-related query with conversation memory."""
         try:
             workflow_steps = []
             products = []
             
+            # Get conversation history for context
+            history = conversation_memory.get_conversation_history(session_id, max_messages=5)
+            user_context = conversation_memory.get_user_context(session_id)
+            
+            # Build context-aware prompt
+            context_prompt = self._build_context_prompt(query, history, user_context)
+            
             # Use LLM to analyze the medical query
             messages = [
                 SystemMessage(content=DOCTOR_AGENT_PROMPT),
-                HumanMessage(content=f"Patient query: {query}")
+                HumanMessage(content=context_prompt)
             ]
             
             response = llm.invoke(messages)
@@ -117,7 +129,7 @@ class DoctorAgent:
                 # Generate medical advice with product recommendations
                 final_messages = [
                     SystemMessage(content=DOCTOR_AGENT_PROMPT),
-                    HumanMessage(content=f"Patient query: {query}\nRecommended products: {products}\nProvide medical advice with these product recommendations, including appropriate disclaimers and safety warnings.")
+                    HumanMessage(content=f"Patient query: {query}\nConversation history: {history}\nRecommended products: {products}\nProvide medical advice with these product recommendations, including appropriate disclaimers and safety warnings. Reference previous context when relevant.")
                 ]
                 final_response = llm.invoke(final_messages)
                 reply = final_response.content
@@ -125,6 +137,24 @@ class DoctorAgent:
                 # General medical conversation
                 workflow_steps.append("medical_conversation")
                 reply = llm_response
+            
+            # Update conversation memory
+            conversation_memory.add_message(
+                session_id=session_id,
+                role="user",
+                content=query
+            )
+            conversation_memory.add_message(
+                session_id=session_id,
+                role="assistant",
+                content=reply,
+                agent_type="doctor",
+                products=products,
+                workflow_steps=workflow_steps
+            )
+            
+            # Update user context based on the conversation
+            self._update_user_context(session_id, query, products)
             
             return {
                 "success": True,
@@ -142,6 +172,64 @@ class DoctorAgent:
                 "workflow_steps": ["error"],
                 "agent_type": "doctor"
             }
+    
+    def _build_context_prompt(self, query: str, history: List[Dict], user_context: Dict[str, Any]) -> str:
+        """Build a context-aware prompt for the LLM."""
+        prompt = f"Current patient query: {query}\n\n"
+        
+        if history:
+            prompt += "Recent conversation history:\n"
+            for msg in history[-3:]:  # Last 3 messages for context
+                role = "Patient" if msg["role"] == "user" else "You"
+                prompt += f"{role}: {msg['content']}\n"
+            prompt += "\n"
+        
+        if user_context:
+            prompt += "Patient context:\n"
+            for key, value in user_context.items():
+                prompt += f"- {key}: {value}\n"
+            prompt += "\n"
+        
+        prompt += "Please respond naturally, considering the conversation history and patient context."
+        return prompt
+    
+    def _update_user_context(self, session_id: str, query: str, products: List[Dict]) -> None:
+        """Update user context based on the medical conversation."""
+        context_updates = {}
+        
+        # Extract medical conditions/symptoms
+        query_lower = query.lower()
+        if any(word in query_lower for word in ["wrist", "hand", "arm"]):
+            context_updates["current_symptoms"] = "wrist/hand/arm issues"
+        elif any(word in query_lower for word in ["ankle", "foot", "leg"]):
+            context_updates["current_symptoms"] = "ankle/foot/leg issues"
+        elif any(word in query_lower for word in ["knee", "leg"]):
+            context_updates["current_symptoms"] = "knee issues"
+        elif any(word in query_lower for word in ["back", "spine"]):
+            context_updates["current_symptoms"] = "back issues"
+        elif any(word in query_lower for word in ["neck", "cervical"]):
+            context_updates["current_symptoms"] = "neck issues"
+        elif any(word in query_lower for word in ["headache", "migraine"]):
+            context_updates["current_symptoms"] = "headache"
+        elif any(word in query_lower for word in ["breathing", "asthma", "cough"]):
+            context_updates["current_symptoms"] = "respiratory issues"
+        
+        # Extract severity
+        if any(word in query_lower for word in ["severe", "bad", "terrible", "awful", "excruciating"]):
+            context_updates["symptom_severity"] = "severe"
+        elif any(word in query_lower for word in ["moderate", "medium", "okay"]):
+            context_updates["symptom_severity"] = "moderate"
+        elif any(word in query_lower for word in ["mild", "slight", "little"]):
+            context_updates["symptom_severity"] = "mild"
+        
+        # Extract duration
+        if any(word in query_lower for word in ["days", "weeks", "months", "years"]):
+            context_updates["symptom_duration"] = "ongoing"
+        elif any(word in query_lower for word in ["just", "recently", "today", "yesterday"]):
+            context_updates["symptom_duration"] = "recent"
+        
+        if context_updates:
+            conversation_memory.update_user_context(session_id, context_updates)
     
     def _generate_product_queries(self, symptom_query: str) -> List[str]:
         """Generate product search queries based on symptoms."""

@@ -23,6 +23,22 @@ def chat_with_bot(message: str, session_id: str = "cli_session") -> Dict[str, An
     except requests.exceptions.RequestException as e:
         return {"error": f"Failed to connect to chatbot: {e}"}
 
+def get_session_history(session_id: str = "cli_session") -> Dict[str, Any]:
+    """
+    Get session history from the API.
+    """
+    try:
+        response = requests.get(
+            f"http://localhost:8000/chat-history/{session_id}",
+            timeout=10
+        )
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return {"history": []}
+    except:
+        return {"history": []}
+
 def main():
     """
     Main CLI loop for chatting with the bot.
@@ -30,19 +46,50 @@ def main():
     print("🤖 Welcome to Al Essa Kuwait Virtual Sales Representative!")
     print("💬 I can help you with medical equipment, home appliances, and general health questions.")
     print("📝 Type 'quit' or 'exit' to end the conversation.")
+    print("📋 Type 'history' to see conversation history.")
+    print("🔄 Type 'new' to start a new session.")
     print("=" * 60)
     
     session_id = "cli_session"
+    
+    # Show recent history if available
+    history_data = get_session_history(session_id)
+    if history_data.get("history"):
+        print("\n📚 Recent conversation history:")
+        for msg in history_data["history"][-3:]:  # Show last 3 messages
+            role_emoji = "👤" if msg.get("role") == "user" else "🤖"
+            print(f"{role_emoji} {msg.get('content', '')[:100]}...")
+        print()
     
     while True:
         try:
             # Get user input
             user_input = input("\n👤 You: ").strip()
             
-            # Check for exit commands
+            # Check for special commands
             if user_input.lower() in ['quit', 'exit', 'bye']:
                 print("\n🤖 Bot: Goodbye! Have a great day!")
                 break
+            
+            if user_input.lower() == 'history':
+                history_data = get_session_history(session_id)
+                if history_data.get("history"):
+                    print("\n📚 Full conversation history:")
+                    for i, msg in enumerate(history_data["history"], 1):
+                        role_emoji = "👤" if msg.get("role") == "user" else "🤖"
+                        agent_type = msg.get("agent_type", "")
+                        agent_emoji = "🩺" if agent_type == "doctor" else "💼" if agent_type == "sales" else ""
+                        print(f"{i}. {role_emoji} {msg.get('content', '')}")
+                        if agent_emoji:
+                            print(f"   {agent_emoji} {agent_type.title()} Agent")
+                else:
+                    print("\n📚 No conversation history found.")
+                continue
+            
+            if user_input.lower() == 'new':
+                session_id = f"cli_session_{len(session_id)}"
+                print(f"\n🔄 Started new session: {session_id}")
+                continue
             
             if not user_input:
                 continue

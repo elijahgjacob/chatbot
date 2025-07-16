@@ -129,18 +129,45 @@ async def scrape_prices(request: Request):
 
 @app.get("/chat-history/{session_id}")
 async def get_chat_history(session_id: str):
-    """Get chat history for a session"""
-    return {
-        "session_id": session_id,
-        "history": chat_history.get(session_id, [])
-    }
+    """Get chat history for a specific session."""
+    try:
+        from app.core.conversation_memory import conversation_memory
+        
+        # Get conversation history
+        history = conversation_memory.get_conversation_history(session_id, max_messages=50)
+        
+        return {
+            "session_id": session_id,
+            "history": history,
+            "message_count": len(history)
+        }
+    except Exception as e:
+        logger.error(f"Error retrieving chat history: {e}")
+        return {
+            "session_id": session_id,
+            "history": [],
+            "message_count": 0,
+            "error": str(e)
+        }
 
 @app.delete("/chat-history/{session_id}")
 async def clear_chat_history(session_id: str):
-    """Clear chat history for a session"""
-    if session_id in chat_history:
-        del chat_history[session_id]
-    return {"message": f"Chat history cleared for session {session_id}"}
+    """Clear chat history for a specific session."""
+    try:
+        from app.core.conversation_memory import conversation_memory
+        
+        conversation_memory.clear_session(session_id)
+        
+        return {
+            "session_id": session_id,
+            "message": "Chat history cleared successfully"
+        }
+    except Exception as e:
+        logger.error(f"Error clearing chat history: {e}")
+        return {
+            "session_id": session_id,
+            "error": str(e)
+        }
 
 @app.get("/health")
 async def health_check():

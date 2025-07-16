@@ -1,0 +1,86 @@
+{
+  "session_id": "cli_session",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hi",
+      "timestamp": "2025-07-16T04:55:43.074273",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! It's great to hear from you again. How can I assist you today? Are you looking for something specific, or do you have any questions about our products?",
+      "timestamp": "2025-07-16T04:55:43.074568",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "i'm looking for a wheelchair",
+      "timestamp": "2025-07-16T04:55:55.260915",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Hello again! I'm glad you're reaching out about a wheelchair. To help you find the best option, could you share a bit more about what you're looking for? For example, do you need a lightweight model for easy transport, or something more sturdy for daily use? \n\nIn the meantime, I can tell you that we have a range of wheelchairs available, including manual and powered options. Each has its own benefits, such as portability, comfort, and ease of use. Once I know your specific needs, I can recommend the perfect fit for you!",
+      "timestamp": "2025-07-16T04:55:55.261321",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_analysis",
+        "product_search"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "do you have any from sunrise brand",
+      "timestamp": "2025-07-16T04:56:04.642085",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Hello again! Thanks for your patience. Regarding your inquiry about the Sunrise brand, we do carry a selection of their wheelchairs. They are known for their quality and comfort.\n\nCould you let me know if you have a specific model in mind, or do you want me to recommend a few options based on your earlier needs? For instance, are you looking for something lightweight or more robust for everyday use? This will help me tailor my recommendations for you!",
+      "timestamp": "2025-07-16T04:56:04.642663",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "what's the cheapest one",
+      "timestamp": "2025-07-16T04:56:23.745407",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Hello again! Thanks for your follow-up. I appreciate your interest in the Sunrise brand. \n\nTo help you find the most affordable option, could you let me know if you prefer a manual or powered wheelchair? This will help me narrow down the choices and find the best price for you. If you have any specific models in mind, feel free to share those as well!",
+      "timestamp": "2025-07-16T04:56:23.745837",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "sales_conversation"
+      ]
+    }
+  ],
+  "created_at": "2025-07-16T04:55:42.094275",
+  "last_updated": "2025-07-16T04:56:23.746285",
+  "agent_type": "sales",
+  "user_context": {
+    "budget_conscious": true
+  }
+}
