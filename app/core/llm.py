@@ -5,7 +5,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 try:
-    llm = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model="gpt-3.5-turbo")
+    llm = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model="gpt-4o-mini")
     print(f"LLM initialized: {llm}")
 except Exception as e:
     print(f"Error initializing LLM: {e}")
