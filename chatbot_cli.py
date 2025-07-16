@@ -59,6 +59,14 @@ def main():
             reply = result.get("reply", "I'm sorry, I didn't understand that.")
             print(f"🤖 Bot: {reply}")
             
+            # Display agent type and routing decision
+            agent_type = result.get("agent_type", "unknown")
+            routing_decision = result.get("routing_decision", "unknown")
+            if agent_type != "unknown":
+                agent_emoji = "🩺" if agent_type == "doctor" else "💼"
+                print(f"{agent_emoji} Agent: {agent_type.title()} Agent")
+                print(f"🎯 Routing: {routing_decision}")
+            
             # Display products if any
             products = result.get("products", [])
             if products:

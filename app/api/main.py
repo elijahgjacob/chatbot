@@ -72,32 +72,46 @@ async def chat(request: Request):
                 chat_history[session_id] = []
             chat_history[session_id].append({
                 "user": query,
-                "bot": agent_result["response"]
+                "bot": agent_result.get("reply", ""),
+                "agent_type": agent_result.get("agent_type", "unknown"),
+                "routing_decision": agent_result.get("routing_decision", "unknown")
             })
-            # Keep only last 10 messages
-            if len(chat_history[session_id]) > 10:
-                chat_history[session_id] = chat_history[session_id][-10:]
-            return asdict(ChatResponse(
-                response=agent_result["response"],
-                reply=agent_result["response"],
-                session_id=session_id,
-                products=agent_result.get("products", []),
-                workflow_steps=agent_result.get("workflow_steps", []),
-                success=True
-            ))
+            
+            # Return response
+            response_data = {
+                "response": agent_result.get("reply", ""),
+                "reply": agent_result.get("reply", ""),
+                "session_id": session_id,
+                "products": agent_result.get("products", []),
+                "workflow_steps": agent_result.get("workflow_steps", []),
+                "success": True,
+                "agent_type": agent_result.get("agent_type", "unknown"),
+                "routing_decision": agent_result.get("routing_decision", "unknown")
+            }
+            return response_data
         else:
-            logger.warning("Agent failed, returning error response")
-            return asdict(ChatResponse(
-                response=agent_result.get("response", "Sorry, something went wrong."),
-                reply=agent_result.get("response", "Sorry, something went wrong."),
-                session_id=session_id,
-                products=[],
-                workflow_steps=["agent_error"],
-                success=False
-            ))
+            return {
+                "response": agent_result.get("reply", "I'm sorry, I encountered an error."),
+                "reply": agent_result.get("reply", "I'm sorry, I encountered an error."),
+                "session_id": session_id,
+                "products": [],
+                "workflow_steps": agent_result.get("workflow_steps", []),
+                "success": False,
+                "agent_type": agent_result.get("agent_type", "unknown"),
+                "routing_decision": agent_result.get("routing_decision", "error")
+            }
     except Exception as e:
-        logger.error(f"Error in chat endpoint: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error processing chat request: {e}")
+        return {
+            "response": "I'm sorry, I encountered an error processing your request.",
+            "reply": "I'm sorry, I encountered an error processing your request.",
+            "session_id": session_id,
+            "products": [],
+            "workflow_steps": ["error"],
+            "success": False,
+            "agent_type": "unknown",
+            "routing_decision": "error"
+        }
 
 @app.get("/scrape-prices")
 async def scrape_prices_get(category_url: str):
