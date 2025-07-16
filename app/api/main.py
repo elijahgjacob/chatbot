@@ -8,7 +8,7 @@ from pydantic import BaseModel
 from typing import Dict, List, Any, Optional
 
 from app.core.logging_config import setup_logging
-from app.agents.agent import chatbot_agent
+from app.agents.sales_agent import process_sales_query
 from app.tools.tools import get_product_prices_from_search
 
 # Setup logging
@@ -17,9 +17,9 @@ logger = logging.getLogger(__name__)
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="Alessa Med Virtual Health & Sales Assistant",
-    description="A chatbot that helps users find medical equipment using web scraping, OpenAI, and LangChain agentic workflows",
-    version="1.0.0"
+    title="Al Essa Kuwait Virtual Sales Assistant",
+    description="An intelligent sales agent that helps customers find and purchase medical equipment, home appliances, and technology products from Al Essa Kuwait using advanced LangChain agentic workflows",
+    version="2.0.0"
 )
 
 # Add CORS middleware
@@ -52,48 +52,64 @@ class ScrapePricesRequest(BaseModel):
 @app.get("/")
 async def root():
     """Health check endpoint"""
-    return {"message": "Medical Equipment Chatbot API", "status": "running"}
+    return {
+        "message": "Al Essa Kuwait Virtual Sales Assistant API", 
+        "status": "running",
+        "version": "2.0.0",
+        "features": [
+            "Sales Agent with LangChain",
+            "Al Essa Kuwait Product Search",
+            "Price Comparison & Recommendations",
+            "Customer Qualification & Upselling"
+        ]
+    }
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
-    """Main chat endpoint using LangChain agentic workflow"""
+    """Main chat endpoint using Al Essa Kuwait Sales Agent"""
     query = request.text
     session_id = request.session_id
     logger.info(f"Received /chat request: {query} (session: {session_id})")
+    
     try:
-        agent_result = chatbot_agent.process_query(query, session_id)
-        if agent_result.get("success"):
+        # Process query with the new sales agent
+        sales_result = process_sales_query(query, session_id)
+        
+        if sales_result.get("success"):
             # Store chat history
             if session_id not in chat_history:
                 chat_history[session_id] = []
             chat_history[session_id].append({
                 "user": query,
-                "bot": agent_result["response"]
+                "bot": sales_result["response"],
+                "sales_stage": sales_result.get("sales_stage", "discovery"),
+                "customer_profile": sales_result.get("customer_profile", {})
             })
             # Keep only last 10 messages
             if len(chat_history[session_id]) > 10:
                 chat_history[session_id] = chat_history[session_id][-10:]
+            
             return ChatResponse(
-                response=agent_result["response"],
-                reply=agent_result["response"],
+                response=sales_result["response"],
+                reply=sales_result["response"],
                 session_id=session_id,
-                products=agent_result.get("products", []),
-                workflow_steps=agent_result.get("workflow_steps", []),
+                products=sales_result.get("products", []),
+                workflow_steps=sales_result.get("recommended_actions", []),
                 success=True
             )
         else:
-            logger.warning("Agent failed, returning error response")
+            logger.warning("Sales agent failed, returning error response")
             return ChatResponse(
-                response=agent_result.get("response", "Sorry, something went wrong."),
-                reply=agent_result.get("response", "Sorry, something went wrong."),
+                response=sales_result.get("response", "I apologize for the technical issue. Let me connect you with a human sales representative."),
+                reply=sales_result.get("response", "I apologize for the technical issue. Let me connect you with a human sales representative."),
                 session_id=session_id,
                 products=[],
-                workflow_steps=["agent_error"],
+                workflow_steps=["sales_agent_error"],
                 success=False
             )
     except Exception as e:
         logger.error(f"Error in chat endpoint: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail="I'm experiencing technical difficulties. Please contact our sales team directly at 1800080.")
 
 @app.get("/scrape-prices")
 async def scrape_prices_get(category_url: str):
