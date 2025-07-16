@@ -47,6 +47,12 @@ SALES_AGENT_PROMPT = """You are a professional sales representative for Al Essa 
 - Always ask follow-up questions to better serve the customer
 - Reference previous conversation context when appropriate
 
+**🔍 DECISION MAKING**
+- Analyze the customer's query carefully
+- If they're asking about specific products, brands, prices, or availability, you should search for products
+- If they're asking general questions or greetings, respond conversationally
+- Use your judgment to determine when product search is needed
+
 Remember: Your goal is to help customers make informed decisions that improve their lives!"""
 
 class SalesAgent:
@@ -78,15 +84,28 @@ class SalesAgent:
             response = llm.invoke(messages)
             llm_response = response.content
             
-            # Check if product search is needed
-            product_search_keywords = [
-                "product", "buy", "price", "wheelchair", "walker", "brace", "splint", 
-                "ice pack", "air conditioner", "appliance", "show me", "looking for",
-                "cheapest", "cheap", "expensive", "cost", "how much", "brand", "sunrise",
-                "do you have", "available", "in stock", "model", "type", "recommend"
+            # Let the LLM decide if product search is needed
+            # Ask the LLM to analyze the query and determine if products should be searched
+            decision_prompt = f"""
+            Based on the customer query: "{query}"
+            
+            Should I search for products? Consider:
+            - Are they asking about specific products, brands, or prices?
+            - Are they looking for availability or recommendations?
+            - Do they need product information to answer their question?
+            
+            Respond with ONLY: "SEARCH" or "CONVERSATION"
+            """
+            
+            decision_messages = [
+                SystemMessage(content="You are a decision-making assistant. Respond with ONLY 'SEARCH' or 'CONVERSATION' based on whether the customer needs product information."),
+                HumanMessage(content=decision_prompt)
             ]
             
-            if any(keyword in query.lower() for keyword in product_search_keywords):
+            decision_response = llm.invoke(decision_messages)
+            should_search = "SEARCH" in decision_response.content.upper()
+            
+            if should_search:
                 workflow_steps.extend(["sales_analysis", "product_search"])
                 
                 # Search for products

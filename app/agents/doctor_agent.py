@@ -93,17 +93,27 @@ class DoctorAgent:
             response = llm.invoke(messages)
             llm_response = response.content
             
-            # Check if this is a symptom or condition that needs product recommendations
-            medical_keywords = [
-                "pain", "hurt", "ache", "sore", "injury", "sprain", "strain", "fracture",
-                "swelling", "bruise", "cut", "burn", "headache", "back pain", "knee pain",
-                "wrist pain", "ankle pain", "shoulder pain", "neck pain", "joint pain",
-                "mobility", "walking", "balance", "fall", "weakness", "numbness",
-                "breathing", "cough", "cold", "fever", "temperature", "blood pressure",
-                "diabetes", "arthritis", "rehabilitation", "therapy", "exercise"
+            # Let the LLM decide if this is a symptom that needs product recommendations
+            decision_prompt = f"""
+            Based on the patient query: "{query}"
+            
+            Should I search for medical products? Consider:
+            - Are they describing symptoms or medical conditions?
+            - Do they need medical advice with product recommendations?
+            - Are they asking about treatment options or medical equipment?
+            
+            Respond with ONLY: "SEARCH" or "CONVERSATION"
+            """
+            
+            decision_messages = [
+                SystemMessage(content="You are a medical decision-making assistant. Respond with ONLY 'SEARCH' or 'CONVERSATION' based on whether the patient needs medical product recommendations."),
+                HumanMessage(content=decision_prompt)
             ]
             
-            if any(keyword in query.lower() for keyword in medical_keywords):
+            decision_response = llm.invoke(decision_messages)
+            should_search = "SEARCH" in decision_response.content.upper()
+            
+            if should_search:
                 workflow_steps.extend(["symptom_analysis", "product_recommendation"])
                 
                 # Generate product search queries based on symptoms
