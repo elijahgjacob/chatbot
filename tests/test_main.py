@@ -200,3 +200,12 @@ def test_product_query_with_history(mock_get):
     assert history_response.status_code == 200
     history_data = history_response.json()
     assert len(history_data["history"]) == 2 
+
+def test_doctor_knowledge_response():
+    """Test that the chatbot can answer a general medical question with a disclaimer."""
+    response = client.post("/chat", json={"text": "What should I do for a headache?"})
+    assert response.status_code == 200
+    data = response.json()
+    assert "headache" in data["reply"].lower()
+    # Check for disclaimer or safety language
+    assert ("consult" in data["reply"].lower() or "doctor" in data["reply"].lower() or "healthcare professional" in data["reply"].lower()) 
