@@ -1,0 +1,38 @@
+# Basic initialization
+> init
+<<<
++ apple.txt apples_are_the_best_fruit.txt
+> add apple.txt
+<<<
++ bananas.txt bananas_are_the_best_fruit.txt
+> add apple.txt
+<<<
++ pear.txt pear_are_the_best_fruit.txt
+> add apple.txt
+<<<
+> commit "added apples, bananas and pears,added apples, bananas and pears,added apples, bananas and pears,added apples, bananas and pears,added apples, bananas and pears,added apples, bananas and pears"
+<<<
+<<<
+D HEADER "commit [a-f0-9]+"
+D DATE "Date: \w\w\w \w\w\w \d+ \d\d:\d\d:\d\d \d\d\d\d [-+]\d\d\d\d"
+> log
+===
+${HEADER}
+${DATE}
+added apples, bananas and pears,added apples, bananas and pears,added apples, bananas and pears,added apples, bananas and pears,added apples, bananas and pears,added apples, bananas and pears
+===
+${HEADER}
+${DATE}
+initial commit
+<<<
+<<<
++ peaches.txt peaches.txt
+> add peaches.txt
+<<<
+> commit "added peaches.txt too!"
+<<<
+<<<
+> checkout 5d0bc169a1737e955f9cb26b9e7aa21e4afd4d12 -- apples.txt
+No commit with that id exists.
+<<<
+

@@ -1,0 +1,61 @@
+#* java -ea ataxx.Main
+# Test of the full game till exhaustion
+block c4
+block c3
+block d4
+block b1
+block a3
+
+a7-a6
+g7-g6
+a6-a4
+g7-f6
+a4-a2
+g6-f5
+g1-f3
+f6-e7
+f3-f4
+e7-e6
+f4-d3
+e7-d7
+a7-c7
+e7-d6
+f3-g4
+d7-c6
+f3-d1
+c7-b6
+d1-b2
+e6-d5
+b2-b4
+c6-b5
+f5-f4
+b6-a7
+f5-f3
+a7-a6
+d3-f2
+g6-f5
+f3-g1
+b5-a4
+f2-g2
+g4-f3
+a1-c1
+b4-b3
+c1-a1
+f3-e2
+g1-e1
+b3-c2
+e1-g1
+b3-b2
+g1-e1
+c2-d3
+g2-g1
+d3-d2
+f2-d1
+f3-f2
+d1-c1
+#*win+
+dump
+quit
+
+
+

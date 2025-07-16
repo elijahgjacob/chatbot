@@ -1,0 +1,41 @@
+# Basic initialization
+> init
+<<<
++ cereal.txt cereals_are_the_best_fruit.txt
+> add cereal.txt
+<<<
++ plants.txt plants_are_the_best_fruit.txt
+> add cereal.txt
+<<<
++ pear.txt pear_are_the_best_fruit.txt
+> add cereal.txt
+<<<
+> commit "added cereals, plants and pears,added cereals, plants and pears,added cereals, plants and pears,added cereals, plants and pears,added cereals, plants and pears,added cereals, plants and pears"
+<<<
+<<<
+D HEADER "commit [a-f0-9]+"
+D DATE "Date: \w\w\w \w\w\w \d+ \d\d:\d\d:\d\d \d\d\d\d [-+]\d\d\d\d"
+> log
+===
+${HEADER}
+${DATE}
+added cereals, plants and pears,added cereals, plants and pears,added cereals, plants and pears,added cereals, plants and pears,added cereals, plants and pears,added cereals, plants and pears
+===
+${HEADER}
+${DATE}
+initial commit
+<<<
+<<<
++ heads.txt heads.txt
+> add heads.txt
+<<<
+> commit "added heads.txt too!"
+<<<
+<<<
+> find "Add another file"
+Found no commit with that message.
+<<<
++ bball.txt bballisthebestsport.txt
+> add bball.txt
+<<<
+> commit "kobe-bryant"
