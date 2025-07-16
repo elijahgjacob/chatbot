@@ -1,0 +1,24 @@
+# Core dependencies
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# Natural language processing
+nltk>=3.8.1
+spacy>=3.7.0
+
+# AI/ML libraries (optional)
+openai>=1.0.0
+transformers>=4.35.0
+torch>=2.0.0
+
+# Web framework (if building web interface)
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Development tools
+black>=23.0.0
+flake8>=6.0.0 
