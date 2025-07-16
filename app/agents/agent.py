@@ -32,7 +32,27 @@ class ChatbotAgent:
         try:
             workflow_steps = []
             products = []
-            
+
+            # Step 0: Check for general medical/doctor question
+            medical_keywords = [
+                "headache", "fever", "pain", "cough", "cold", "flu", "sick", "symptom", "medicine", "doctor", "health", "dizzy", "vomit", "nausea", "rash", "injury", "bleeding", "infection", "treatment", "advice", "prescription", "diagnosis"
+            ]
+            if any(word in query.lower() for word in medical_keywords):
+                # Doctor-style response with disclaimer
+                response = (
+                    f"I'm a virtual assistant and can provide general information about your question: '{query}'. "
+                    "However, my advice does not replace consultation with a real healthcare professional. "
+                    "If your symptoms are severe or worsening, please seek immediate medical attention. "
+                    "For a headache, common advice includes resting, staying hydrated, and avoiding triggers. "
+                    "If the headache is severe, persistent, or accompanied by other symptoms, consult a doctor."
+                )
+                return {
+                    "success": True,
+                    "response": response,
+                    "products": [],
+                    "workflow_steps": ["doctor_response"]
+                }
+
             # Step 1: Query Refinement (for complex queries)
             if self._needs_refinement(query):
                 refinement_result = self.query_refinement_tool._run(query)
