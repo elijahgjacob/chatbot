@@ -41,41 +41,45 @@ def main():
             
             # Check for exit commands
             if user_input.lower() in ['quit', 'exit', 'bye']:
-                print("\n🤖 Bot: Thank you for chatting with me! Have a great day!")
+                print("\n🤖 Bot: Goodbye! Have a great day!")
                 break
             
             if not user_input:
                 continue
             
-            # Send message to bot
+            # Send to bot
             print("🤖 Bot: Thinking...")
             result = chat_with_bot(user_input, session_id)
             
-            # Display response
             if "error" in result:
                 print(f"❌ Error: {result['error']}")
-            else:
-                print(f"🤖 Bot: {result.get('reply', result.get('response', 'No response'))}")
-                
-                # Show products if any
-                products = result.get('products', [])
-                if products:
-                    print(f"\n📦 Found {len(products)} products:")
-                    for i, product in enumerate(products[:3], 1):  # Show first 3
-                        print(f"   {i}. {product.get('name', 'Unknown')} - {product.get('price', 'N/A')}")
-                    if len(products) > 3:
-                        print(f"   ... and {len(products) - 3} more")
-                
-                # Show workflow steps if any
-                workflow_steps = result.get('workflow_steps', [])
-                if workflow_steps:
-                    print(f"\n🔧 Workflow: {' → '.join(workflow_steps)}")
-                
+                continue
+            
+            # Display bot response
+            reply = result.get("reply", "I'm sorry, I didn't understand that.")
+            print(f"🤖 Bot: {reply}")
+            
+            # Display products if any
+            products = result.get("products", [])
+            if products:
+                print("\n🛍️ Products found:")
+                for i, product in enumerate(products[:3], 1):  # Show max 3 products
+                    name = product.get("name", "Unknown Product")
+                    price = product.get("price", "Price not available")
+                    print(f"   {i}. {name} - {price}")
+                if len(products) > 3:
+                    print(f"   ... and {len(products) - 3} more products")
+            
+            # Display workflow steps
+            workflow = result.get("workflow_steps", [])
+            if workflow:
+                print(f"\n🔧 Workflow: {' → '.join(workflow)}")
+            
         except KeyboardInterrupt:
-            print("\n\n🤖 Bot: Goodbye! Thanks for chatting!")
+            print("\n\n🤖 Bot: Goodbye! Have a great day!")
             break
         except Exception as e:
-            print(f"❌ Unexpected error: {e}")
+            print(f"\n❌ Unexpected error: {e}")
 
 if __name__ == "__main__":
     main()
