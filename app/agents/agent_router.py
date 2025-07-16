@@ -28,10 +28,13 @@ Analyze the user's query and determine which specialized agent should handle it:
 **Route to SALES AGENT if the query contains:**
 - Product purchases: "I want to buy...", "show me...", "price of..."
 - General product questions: "do you have...", "what products...", "catalog"
+- Brand-specific queries: "Sunrise", "brand", "model", "type"
+- Pricing queries: "cheapest", "cheap", "expensive", "how much", "cost"
 - Home appliances: air conditioner, refrigerator, washing machine
 - Technology: computer, phone, accessories
 - Pricing and availability: "how much", "cost", "available"
 - General shopping: "looking for", "need", "want"
+- Product availability: "do you have", "in stock", "available"
 
 **💬 RESPONSE FORMAT**
 Respond with ONLY one word: either "SALES" or "DOCTOR"
@@ -44,7 +47,11 @@ Respond with ONLY one word: either "SALES" or "DOCTOR"
 - "I hurt my ankle" → DOCTOR
 - "Do you have walkers?" → SALES
 - "I need medical advice" → DOCTOR
-- "Looking for a refrigerator" → SALES"""
+- "Looking for a refrigerator" → SALES
+- "Do you have Sunrise wheelchairs?" → SALES
+- "What's the cheapest wheelchair?" → SALES
+- "Sunrise brand products" → SALES
+- "Cheapest option" → SALES"""
 
 class AgentRouter:
     """Intelligent router that determines which agent should handle a query."""

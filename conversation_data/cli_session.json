@@ -73,12 +73,49 @@
       "agent_type": "sales",
       "products": [],
       "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "manual",
+      "timestamp": "2025-07-16T04:57:34.852249",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Hello again! Thanks for your quick reply. Since you're looking for the cheapest option, could you please confirm if you're interested in a manual wheelchair or if you'd like to explore powered options as well? This will help me find the best fit for your budget!",
+      "timestamp": "2025-07-16T04:57:34.853217",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "manual",
+      "timestamp": "2025-07-16T04:57:44.917486",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! Thanks for confirming that you're interested in a manual wheelchair. Since you’re budget-conscious, I’ll focus on options that provide great value without compromising quality. \n\nCould you please let me know if you have any specific features in mind, such as weight capacity, portability, or any other preferences? This will help me find the best match for you!",
+      "timestamp": "2025-07-16T04:57:44.918196",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
         "sales_conversation"
       ]
     }
   ],
   "created_at": "2025-07-16T04:55:42.094275",
-  "last_updated": "2025-07-16T04:56:23.746285",
+  "last_updated": "2025-07-16T04:57:44.918205",
   "agent_type": "sales",
   "user_context": {
     "budget_conscious": true

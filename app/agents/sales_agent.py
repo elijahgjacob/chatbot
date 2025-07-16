@@ -79,7 +79,14 @@ class SalesAgent:
             llm_response = response.content
             
             # Check if product search is needed
-            if any(keyword in query.lower() for keyword in ["product", "buy", "price", "wheelchair", "walker", "brace", "splint", "ice pack", "air conditioner", "appliance", "show me", "looking for"]):
+            product_search_keywords = [
+                "product", "buy", "price", "wheelchair", "walker", "brace", "splint", 
+                "ice pack", "air conditioner", "appliance", "show me", "looking for",
+                "cheapest", "cheap", "expensive", "cost", "how much", "brand", "sunrise",
+                "do you have", "available", "in stock", "model", "type", "recommend"
+            ]
+            
+            if any(keyword in query.lower() for keyword in product_search_keywords):
                 workflow_steps.extend(["sales_analysis", "product_search"])
                 
                 # Search for products
