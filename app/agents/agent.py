@@ -6,21 +6,22 @@ from typing import Dict, List, Any
 from app.tools.product_search import product_search_tool
 from app.tools.response_filter import response_filter_tool
 from app.tools.query_refinement import query_refinement_tool
+from app.core.llm import llm
+from app.core.prompts import SYSTEM_PROMPT
 
 AVAILABLE_TOOLS = [product_search_tool, response_filter_tool, query_refinement_tool]
 
 class ChatbotAgent:
-    """Agent for processing queries with tools."""
+    """Agent for processing queries with tools using LLM reasoning."""
     
     def __init__(self):
-        """Initialize the agent with tools and memory."""
+        """Initialize the agent with tools and LLM."""
         self.memory = []
-        self.prompt = "You are a helpful assistant that can search for products and provide information."
         self.tools = AVAILABLE_TOOLS
-    
+        
     def process_query(self, query: str, session_id: str = "default") -> Dict[str, Any]:
         """
-        Process a user query using the agentic workflow.
+        Process a user query using LLM reasoning and tools.
         
         Args:
             query: The user's query
@@ -31,87 +32,113 @@ class ChatbotAgent:
         """
         try:
             workflow_steps = []
-            products = []
+            
+            # Use LLM to determine the type of query and appropriate response
+            llm_prompt = f"""
+{SYSTEM_PROMPT}
 
-            # Step 1: Query Refinement (for complex queries)
-            if self._needs_refinement(query):
-                refinement_result = self.query_refinement_tool._run(query)
-                workflow_steps.append("query_refinement")
-                if refinement_result.get("success"):
-                    refined_query = refinement_result.get("search_query", query)
+User Query: "{query}"
+
+Based on the user's query, determine:
+1. Is this a conversational/greeting query (like "hi", "how are you", "hello")?
+2. Is this a medical/health question that requires doctor knowledge?
+3. Is this a product search query?
+4. Is this a combination of the above?
+
+Respond appropriately:
+- For greetings: Be friendly and conversational
+- For medical questions: Provide helpful advice with appropriate disclaimers
+- For product queries: Use the product_search tool
+- For complex queries: Use query_refinement first, then product_search
+
+If you need to search for products, use the product_search tool with the appropriate query.
+If you need to filter results, use the response_filter tool.
+
+Remember to be conversational, helpful, and use the tools when appropriate.
+"""
+            
+            # Get LLM response
+            llm_response = llm.invoke(llm_prompt)
+            response_content = llm_response.content if hasattr(llm_response, 'content') else str(llm_response)
+            
+            # Check if LLM wants to use tools
+            if "product_search" in response_content.lower() or any(word in query.lower() for word in ["wheelchair", "walker", "crutch", "medical", "equipment", "appliance"]):
+                workflow_steps.append("llm_reasoning")
+                
+                # Use product search tool
+                search_result = product_search_tool(query)
+                workflow_steps.append("product_search")
+                
+                if search_result.get("success") and search_result.get("products"):
+                    products = search_result["products"]
+                    
+                    # Generate final response with products
+                    final_prompt = f"""
+{SYSTEM_PROMPT}
+
+User Query: "{query}"
+
+Products Found: {products}
+
+Generate a helpful, conversational response that:
+1. Addresses the user's query
+2. Presents the products in a friendly, sales-oriented way
+3. Maintains the conversational tone
+4. Includes appropriate medical disclaimers if relevant
+
+Response:
+"""
+                    final_response = llm.invoke(final_prompt)
+                    response = final_response.content if hasattr(final_response, 'content') else str(final_response)
+                    
+                    return {
+                        "success": True,
+                        "response": response,
+                        "products": products,
+                        "workflow_steps": workflow_steps
+                    }
                 else:
-                    refined_query = query
+                    # No products found, but still be conversational
+                    no_products_prompt = f"""
+{SYSTEM_PROMPT}
+
+User Query: "{query}"
+
+No products were found for this query. Generate a helpful, conversational response that:
+1. Acknowledges the user's request
+2. Suggests alternative approaches or rephrasing
+3. Maintains a helpful, sales-oriented tone
+4. Offers to help with other products or questions
+
+Response:
+"""
+                    no_products_response = llm.invoke(no_products_prompt)
+                    response = no_products_response.content if hasattr(no_products_response, 'content') else str(no_products_response)
+                    
+                    return {
+                        "success": True,
+                        "response": response,
+                        "products": [],
+                        "workflow_steps": workflow_steps
+                    }
             else:
-                refined_query = query
-            
-            # Step 2: Product Search
-            from app.tools.tools import get_product_prices_from_search
-            search_result = get_product_prices_from_search(refined_query)
-            workflow_steps.append("product_search")
-            products = search_result.get("products", [])
-            
-            # Step 3: Response Filtering (if needed)
-            if self._needs_filtering(query) and products:
-                filter_result = self.response_filter_tool._run(products, query)
-                workflow_steps.append("response_filter")
-                if filter_result.get("success"):
-                    products = filter_result.get("filtered_products", products)
-            
-            # Generate response
-            response = self._generate_response(query, products)
-            
-            return {
-                "success": True,
-                "response": response,
-                "products": products,
-                "workflow_steps": workflow_steps
-            }
+                # Conversational or medical query - use LLM response directly
+                workflow_steps.append("llm_conversation")
+                return {
+                    "success": True,
+                    "response": response_content,
+                    "products": [],
+                    "workflow_steps": workflow_steps
+                }
             
         except Exception as e:
             return {
                 "success": False,
                 "error": str(e),
-                "response": "I encountered an error while processing your request.",
+                "response": "I encountered an error while processing your request. Please try again.",
                 "products": [],
                 "workflow_steps": []
             }
-    
-    def _needs_refinement(self, query: str) -> bool:
-        """Check if query needs refinement."""
-        complex_keywords = ["cheapest", "best", "most expensive", "recommend", "suggest"]
-        return any(keyword in query.lower() for keyword in complex_keywords)
-    
-    def _needs_filtering(self, query: str) -> bool:
-        """Check if results need filtering."""
-        filter_keywords = ["cheapest", "most expensive", "best", "top", "lowest", "highest"]
-        return any(keyword in query.lower() for keyword in filter_keywords)
-    
-    def _generate_response(self, query: str, products: List[Dict]) -> str:
-        """Generate a response based on the query and products."""
-        if not products:
-            return "I couldn't find any products matching your query. Could you try rephrasing it?"
-        
-        # Check if this was a filtered query (cheapest, most expensive, etc.)
-        query_lower = query.lower()
-        is_filtered = any(keyword in query_lower for keyword in ["cheapest", "most expensive", "best", "lowest", "highest"])
-        
-        def get_link(product):
-            return product.get('link', product.get('url', ''))
-        
-        if len(products) == 1:
-            product = products[0]
-            if is_filtered:
-                filter_type = "cheapest" if "cheapest" in query_lower else "most expensive" if "most expensive" in query_lower else "best"
-                return f"I found the {filter_type} option: {product['name']} for {product['price']}. You can view it at {get_link(product)}."
-            else:
-                return f"I found {product['name']} for {product['price']}. You can view it at {get_link(product)}."
-        
-        product_list = "\n".join([
-            f"- {p['name']}: {p['price']} ({get_link(p)})"
-            for p in products[:3]  # Show top 3
-        ])
-        
-        return f"I found {len(products)} products matching your query:\n{product_list}"
 
 # Create a global agent instance
 chatbot_agent = ChatbotAgent()
