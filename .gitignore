@@ -77,4 +77,5 @@ coverage.xml
 .env.*
 
 # Local settings
-settings_local.py 
+settings_local.py !env.example
+!.env.example
