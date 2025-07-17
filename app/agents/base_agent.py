@@ -4,7 +4,6 @@ Base Agent class for Al Essa Kuwait - Contains common functionality for all agen
 
 from typing import Dict, List, Any, Optional
 from abc import ABC, abstractmethod
-from app.core.conversation_memory import conversation_memory
 import logging
 
 logger = logging.getLogger(__name__)
