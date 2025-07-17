@@ -1,0 +1,27 @@
+{
+  "session_id": "test",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hello",
+      "timestamp": "2025-07-17T01:12:31.716186",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! It's great to hear from you again. How can I assist you today? Are you looking for any specific product or information?",
+      "timestamp": "2025-07-17T01:12:31.716498",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "sales_conversation"
+      ]
+    }
+  ],
+  "created_at": "2025-07-17T01:12:31.716170",
+  "last_updated": "2025-07-17T01:12:31.716507",
+  "agent_type": "sales",
+  "user_context": {}
+}

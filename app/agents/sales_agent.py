@@ -4,10 +4,10 @@ Sales Agent for Al Essa Kuwait - Specialized in product sales and customer servi
 
 from typing import Dict, List, Any
 from app.core.llm import llm
-from app.core.conversation_memory import conversation_memory
 from app.tools.product_search import product_search_tool
 from app.tools.response_filter import response_filter_tool
 from app.tools.price_filter import price_filter_tool
+from app.agents.base_agent import BaseAgent
 from langchain.schema import HumanMessage, SystemMessage
 import logging
 
@@ -59,12 +59,17 @@ SALES_AGENT_PROMPT = """You are a professional sales representative for Al Essa 
 
 Remember: Your goal is to help customers make informed decisions that improve their lives!"""
 
-class SalesAgent:
+class SalesAgent(BaseAgent):
     """Sales agent for product recommendations and customer service."""
     
     def __init__(self):
         """Initialize the sales agent."""
+        super().__init__("sales")
         self.tools = [product_search_tool, response_filter_tool, price_filter_tool]
+    
+    def handle_chat(self, query: str, session_id: str) -> Dict[str, Any]:
+        """Handle chat request for sales queries."""
+        return self.process_query(query, session_id)
         
     def process_query(self, query: str, session_id: str = "default") -> Dict[str, Any]:
         """Process a sales-related query with conversation memory."""
@@ -73,8 +78,7 @@ class SalesAgent:
             products = []
             
             # Get conversation history for context
-            history = conversation_memory.get_conversation_history(session_id, max_messages=5)
-            user_context = conversation_memory.get_user_context(session_id)
+            history, user_context = self._get_conversation_context(session_id)
             
             # Build context-aware prompt
             context_prompt = self._build_context_prompt(query, history, user_context)
@@ -243,60 +247,17 @@ class SalesAgent:
                 workflow_steps.append("sales_conversation")
                 reply = llm_response
             
-            # Update conversation memory
-            conversation_memory.add_message(
-                session_id=session_id,
-                role="user",
-                content=query
-            )
-            conversation_memory.add_message(
-                session_id=session_id,
-                role="assistant",
-                content=reply,
-                agent_type="sales",
-                products=products,
-                workflow_steps=workflow_steps
-            )
-            
-            # Update user context based on the conversation
+            # Handle conversation memory and update context
+            self._handle_conversation_memory(session_id, query, reply, products, workflow_steps)
             self._update_user_context(session_id, query, products)
             
-            return {
-                "success": True,
-                "reply": reply,
-                "products": products,
-                "workflow_steps": workflow_steps,
-                "agent_type": "sales"
-            }
+            return self._build_response(True, reply, products, workflow_steps)
             
         except Exception as e:
-            return {
-                "success": False,
-                "reply": f"I'm sorry, I encountered an error: {str(e)}",
-                "products": [],
-                "workflow_steps": ["error"],
-                "agent_type": "sales"
-            }
+            error_msg = f"I'm sorry, I encountered an error: {str(e)}"
+            return self._build_response(False, error_msg, [], ["error"], str(e))
     
-    def _build_context_prompt(self, query: str, history: List[Dict], user_context: Dict[str, Any]) -> str:
-        """Build a context-aware prompt for the LLM."""
-        prompt = f"Current customer query: {query}\n\n"
-        
-        if history:
-            prompt += "Recent conversation history:\n"
-            for msg in history[-3:]:  # Last 3 messages for context
-                role = "Customer" if msg["role"] == "user" else "You"
-                prompt += f"{role}: {msg['content']}\n"
-            prompt += "\n"
-        
-        if user_context:
-            prompt += "Customer context:\n"
-            for key, value in user_context.items():
-                prompt += f"- {key}: {value}\n"
-            prompt += "\n"
-        
-        prompt += "Please respond naturally, considering the conversation history and customer context."
-        return prompt
+
     
     def _update_user_context(self, session_id: str, query: str, products: List[Dict]) -> None:
         """Update user context based on the conversation."""
@@ -323,6 +284,7 @@ class SalesAgent:
             context_updates["urgency"] = "high"
         
         if context_updates:
+            from app.core.conversation_memory import conversation_memory
             conversation_memory.update_user_context(session_id, context_updates)
 
 # Initialize sales agent
