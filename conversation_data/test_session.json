@@ -55,10 +55,310 @@
         "symptom_analysis",
         "product_recommendation"
       ]
+    },
+    {
+      "role": "user",
+      "content": "show me wheelchairs",
+      "timestamp": "2025-07-17T01:55:35.995427",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:35.995900",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "do you have sunrise wheelchairs",
+      "timestamp": "2025-07-17T01:55:36.001138",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.001517",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "what's the cheapest wheelchair",
+      "timestamp": "2025-07-17T01:55:36.006500",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.006945",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "hello",
+      "timestamp": "2025-07-17T01:55:36.013167",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.013565",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I have wrist pain",
+      "timestamp": "2025-07-17T01:55:36.015836",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.016246",
+      "agent_type": "doctor",
+      "products": [],
+      "workflow_steps": [
+        "medical_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "show me wheelchairs",
+      "timestamp": "2025-07-17T01:55:36.025662",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.026147",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Do you have Sunrise wheelchairs?",
+      "timestamp": "2025-07-17T01:55:36.035063",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.035525",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I hurt my ankle",
+      "timestamp": "2025-07-17T01:55:36.038599",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.039062",
+      "agent_type": "doctor",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "medical_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "What's the cheapest wheelchair?",
+      "timestamp": "2025-07-17T01:55:36.043134",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.043630",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I have scoliosis",
+      "timestamp": "2025-07-17T01:55:36.047424",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.048156",
+      "agent_type": "doctor",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "medical_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Show me walkers",
+      "timestamp": "2025-07-17T01:55:36.050737",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.051410",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "What should I do for my headache?",
+      "timestamp": "2025-07-17T01:55:36.054053",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.054688",
+      "agent_type": "doctor",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "medical_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Looking for a refrigerator",
+      "timestamp": "2025-07-17T01:55:36.058826",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.059493",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Can you recommend a back brace?",
+      "timestamp": "2025-07-17T01:55:36.062766",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.065158",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Hello there!",
+      "timestamp": "2025-07-17T01:55:36.070776",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.071479",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I need medical equipment for my diabetes",
+      "timestamp": "2025-07-17T01:55:36.074385",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "CONVERSATION",
+      "timestamp": "2025-07-17T01:55:36.075113",
+      "agent_type": "doctor",
+      "products": [],
+      "workflow_steps": [
+        "medical_conversation"
+      ]
     }
   ],
   "created_at": "2025-07-16T12:44:47.133359",
-  "last_updated": "2025-07-16T12:45:02.499154",
+  "last_updated": "2025-07-17T01:55:36.075122",
   "agent_type": "doctor",
-  "user_context": {}
+  "user_context": {
+    "budget_conscious": true,
+    "current_symptoms": "headache"
+  }
 }

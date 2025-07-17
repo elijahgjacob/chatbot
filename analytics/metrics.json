@@ -1,16 +1,16 @@
 {
-  "total_queries": 7,
-  "successful_queries": 3,
+  "total_queries": 31,
+  "successful_queries": 27,
   "failed_queries": 4,
-  "average_response_time": 15.034587349210467,
+  "average_response_time": 3.3964784376082884,
   "cache_hit_rate": 0.0,
   "agent_usage": {
-    "sales": 3,
-    "doctor": 4
+    "sales": 26,
+    "doctor": 5
   },
   "error_counts": {
     "name 'conversation_memory' is not defined": 4
   },
-  "peak_concurrent_users": 4,
-  "current_concurrent_users": 4
+  "peak_concurrent_users": 11,
+  "current_concurrent_users": 11
 }

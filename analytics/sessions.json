@@ -46,5 +46,90 @@
     "agent_usage": {
       "sales": 1
     }
+  },
+  {
+    "session_id": "default",
+    "start_time": 1752717336.1535637,
+    "end_time": null,
+    "total_queries": 4,
+    "successful_queries": 4,
+    "failed_queries": 0,
+    "total_products_viewed": 0,
+    "agent_usage": {
+      "sales": 3,
+      "doctor": 1
+    }
+  },
+  {
+    "session_id": "test_session_123",
+    "start_time": 1752717336.169323,
+    "end_time": null,
+    "total_queries": 1,
+    "successful_queries": 1,
+    "failed_queries": 0,
+    "total_products_viewed": 0,
+    "agent_usage": {
+      "sales": 1
+    }
+  },
+  {
+    "session_id": "test_history_456",
+    "start_time": 1752717336.1795926,
+    "end_time": null,
+    "total_queries": 2,
+    "successful_queries": 2,
+    "failed_queries": 0,
+    "total_products_viewed": 0,
+    "agent_usage": {
+      "sales": 2
+    }
+  },
+  {
+    "session_id": "test_limit_789",
+    "start_time": 1752717336.1923041,
+    "end_time": null,
+    "total_queries": 12,
+    "successful_queries": 12,
+    "failed_queries": 0,
+    "total_products_viewed": 0,
+    "agent_usage": {
+      "sales": 12
+    }
+  },
+  {
+    "session_id": "test_clear_999",
+    "start_time": 1752717336.2445467,
+    "end_time": null,
+    "total_queries": 1,
+    "successful_queries": 1,
+    "failed_queries": 0,
+    "total_products_viewed": 0,
+    "agent_usage": {
+      "sales": 1
+    }
+  },
+  {
+    "session_id": "test_context_111",
+    "start_time": 1752717336.2585924,
+    "end_time": null,
+    "total_queries": 2,
+    "successful_queries": 2,
+    "failed_queries": 0,
+    "total_products_viewed": 0,
+    "agent_usage": {
+      "sales": 2
+    }
+  },
+  {
+    "session_id": "test_product_history_222",
+    "start_time": 1752717336.2723536,
+    "end_time": null,
+    "total_queries": 2,
+    "successful_queries": 2,
+    "failed_queries": 0,
+    "total_products_viewed": 0,
+    "agent_usage": {
+      "sales": 2
+    }
   }
 ]
