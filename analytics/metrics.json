@@ -1,11 +1,11 @@
 {
-  "total_queries": 14,
-  "successful_queries": 10,
+  "total_queries": 20,
+  "successful_queries": 16,
   "failed_queries": 4,
-  "average_response_time": 13.103332332202367,
+  "average_response_time": 10.79965490102768,
   "cache_hit_rate": 0.0,
   "agent_usage": {
-    "sales": 10,
+    "sales": 16,
     "doctor": 4
   },
   "error_counts": {

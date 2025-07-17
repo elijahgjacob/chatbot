@@ -152,5 +152,71 @@
     "success": true,
     "error_message": null,
     "timestamp": 1752715223.1803584
+  },
+  {
+    "query": "manual wheelchair",
+    "session_id": "cli_session",
+    "agent_type": "sales",
+    "response_time": 7.278563022613525,
+    "products_found": 31,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715421.3352082
+  },
+  {
+    "query": "hi",
+    "session_id": "cli_session",
+    "agent_type": "sales",
+    "response_time": 4.051763534545898,
+    "products_found": 0,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715499.4119983
+  },
+  {
+    "query": "are you sure they're manual?",
+    "session_id": "cli_session",
+    "agent_type": "sales",
+    "response_time": 3.5451862812042236,
+    "products_found": 0,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715518.5881999
+  },
+  {
+    "query": "Give me the links",
+    "session_id": "cli_session",
+    "agent_type": "sales",
+    "response_time": 5.0596983432769775,
+    "products_found": 0,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715533.4491787
+  },
+  {
+    "query": "echo \"manual wheelchair\" | python3 chatbot_cli.py --evaluate | head -50",
+    "session_id": "cli_session",
+    "agent_type": "sales",
+    "response_time": 7.621754169464111,
+    "products_found": 7,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715580.3233035
+  },
+  {
+    "query": "manual wheelchair",
+    "session_id": "cli_session",
+    "agent_type": "sales",
+    "response_time": 4.989480018615723,
+    "products_found": 31,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715585.3174853
   }
 ]

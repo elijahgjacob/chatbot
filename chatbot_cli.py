@@ -7,6 +7,8 @@ import sys
 import json
 import requests
 from typing import Dict, Any
+import os
+import argparse
 
 def chat_with_bot(message: str, session_id: str = "cli_session") -> Dict[str, Any]:
     """
@@ -39,15 +41,52 @@ def get_session_history(session_id: str = "cli_session") -> Dict[str, Any]:
     except:
         return {"history": []}
 
+def evaluate_response(user_query: str, response_data: Dict[str, Any]) -> None:
+    """Evaluate a chatbot response using the LLM evaluator."""
+    try:
+        # Import evaluator (local import to avoid dependency issues)
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from app.core.response_evaluator import response_evaluator
+        
+        # Extract response components
+        bot_response = response_data.get("reply", "")
+        products = response_data.get("products", [])
+        agent_type = response_data.get("agent_type", "unknown")
+        workflow_steps = response_data.get("workflow_steps", [])
+        
+        # Evaluate the response
+        evaluation = response_evaluator.evaluate_response(
+            user_query=user_query,
+            bot_response=bot_response,
+            products=products,
+            agent_type=agent_type,
+            workflow_steps=workflow_steps
+        )
+        
+        # Format and display evaluation
+        eval_summary = response_evaluator.format_evaluation_summary(evaluation)
+        print(eval_summary)
+        
+    except Exception as e:
+        print(f"\n❌ Response evaluation failed: {e}")
+
 def main():
     """
     Main CLI loop for chatting with the bot.
     """
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description="Al Essa Kuwait Chatbot CLI")
+    parser.add_argument("--evaluate", action="store_true", 
+                       help="Enable response evaluation for each message")
+    args = parser.parse_args()
+    
     print("🤖 Welcome to Al Essa Kuwait Virtual Sales Representative!")
     print("💬 I can help you with medical equipment, home appliances, and general health questions.")
     print("📝 Type 'quit' or 'exit' to end the conversation.")
     print("📋 Type 'history' to see conversation history.")
     print("🔄 Type 'new' to start a new session.")
+    if args.evaluate:
+        print("📊 Response evaluation is ENABLED")
     print("=" * 60)
     
     session_id = "cli_session"
@@ -129,6 +168,13 @@ def main():
             workflow = result.get("workflow_steps", [])
             if workflow:
                 print(f"\n🔧 Workflow: {' → '.join(workflow)}")
+            
+            # Evaluate response if enabled
+            if args.evaluate:
+                print("\n" + "="*50)
+                print("🔍 EVALUATING RESPONSE...")
+                evaluate_response(user_input, result)
+                print("="*50)
             
         except KeyboardInterrupt:
             print("\n\n🤖 Bot: Goodbye! Have a great day!")

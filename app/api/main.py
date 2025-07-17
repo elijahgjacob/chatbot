@@ -38,6 +38,7 @@ app.add_middleware(
 class ChatRequest:
     text: str
     session_id: str = "default"
+    evaluate_response: bool = False
 
 @dataclass
 class ChatResponse:
@@ -48,6 +49,7 @@ class ChatResponse:
     workflow_steps: list = field(default_factory=list)
     success: bool = True
     conversation_context: Optional[Dict[str, Any]] = None
+    evaluation: Optional[Dict[str, Any]] = None
 
 @dataclass
 class ScrapePricesRequest:
@@ -103,14 +105,33 @@ async def chat(request: Request):
         if agent_result.get("success"):
             response_text = agent_result["reply"]
             products = agent_result.get("products", [])
+            workflow_steps = agent_result.get("workflow_steps", [])
+            agent_type = agent_result.get("agent_type", "unknown")
+            
+            # Evaluate response if requested
+            evaluation = None
+            if request.evaluate_response:
+                try:
+                    from app.core.response_evaluator import response_evaluator
+                    evaluation = response_evaluator.evaluate_response(
+                        user_query=query,
+                        bot_response=response_text,
+                        products=products,
+                        agent_type=agent_type,
+                        workflow_steps=workflow_steps
+                    )
+                except Exception as e:
+                    logger.warning(f"Response evaluation failed: {e}")
+                    evaluation = {"error": f"Evaluation failed: {str(e)}"}
             
             return ChatResponse(
                 response=response_text,
                 reply=response_text,
                 session_id=session_id,
                 products=products,
-                workflow_steps=agent_result.get("workflow_steps", []),
-                success=True
+                workflow_steps=workflow_steps,
+                success=True,
+                evaluation=evaluation
             )
         else:
             return ChatResponse(

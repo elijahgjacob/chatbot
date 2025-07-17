@@ -51,12 +51,12 @@
     "session_id": "cli_session",
     "start_time": 1752715063.1459088,
     "end_time": null,
-    "total_queries": 7,
-    "successful_queries": 7,
+    "total_queries": 13,
+    "successful_queries": 13,
     "failed_queries": 0,
-    "total_products_viewed": 66,
+    "total_products_viewed": 135,
     "agent_usage": {
-      "sales": 7
+      "sales": 13
     }
   }
 ]
