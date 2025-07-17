@@ -218,5 +218,16 @@
     "success": true,
     "error_message": null,
     "timestamp": 1752715585.3174853
+  },
+  {
+    "query": "hi",
+    "session_id": "test_hi",
+    "agent_type": "sales",
+    "response_time": 1.5355312824249268,
+    "products_found": 0,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715660.3587935
   }
 ]

@@ -58,5 +58,17 @@
     "agent_usage": {
       "sales": 13
     }
+  },
+  {
+    "session_id": "test_hi",
+    "start_time": 1752715658.8233974,
+    "end_time": null,
+    "total_queries": 1,
+    "successful_queries": 1,
+    "failed_queries": 0,
+    "total_products_viewed": 0,
+    "agent_usage": {
+      "sales": 1
+    }
   }
 ]
