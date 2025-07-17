@@ -284,6 +284,7 @@ class SalesAgent(BaseAgent):
             context_updates["urgency"] = "high"
         
         if context_updates:
+            from app.core.conversation_memory import conversation_memory
             conversation_memory.update_user_context(session_id, context_updates)
 
 # Initialize sales agent

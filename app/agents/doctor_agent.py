@@ -193,6 +193,7 @@ class DoctorAgent(BaseAgent):
             context_updates["symptom_duration"] = "recent"
         
         if context_updates:
+            from app.core.conversation_memory import conversation_memory
             conversation_memory.update_user_context(session_id, context_updates)
     
     def _generate_product_queries(self, symptom_query: str) -> List[str]:

@@ -1,0 +1,50 @@
+[
+  {
+    "session_id": "test_user_123",
+    "start_time": 1752714699.7412472,
+    "end_time": null,
+    "total_queries": 1,
+    "successful_queries": 0,
+    "failed_queries": 1,
+    "total_products_viewed": 0,
+    "agent_usage": {
+      "sales": 1
+    }
+  },
+  {
+    "session_id": "test",
+    "start_time": 1752714748.7551854,
+    "end_time": null,
+    "total_queries": 1,
+    "successful_queries": 1,
+    "failed_queries": 0,
+    "total_products_viewed": 0,
+    "agent_usage": {
+      "sales": 1
+    }
+  },
+  {
+    "session_id": "test_medical",
+    "start_time": 1752714757.7360265,
+    "end_time": null,
+    "total_queries": 4,
+    "successful_queries": 1,
+    "failed_queries": 3,
+    "total_products_viewed": 5,
+    "agent_usage": {
+      "doctor": 4
+    }
+  },
+  {
+    "session_id": "test_sales",
+    "start_time": 1752715009.6962624,
+    "end_time": null,
+    "total_queries": 1,
+    "successful_queries": 1,
+    "failed_queries": 0,
+    "total_products_viewed": 27,
+    "agent_usage": {
+      "sales": 1
+    }
+  }
+]

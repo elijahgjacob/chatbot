@@ -46,6 +46,7 @@ class BaseAgent(ABC):
                                    products: List[Dict], workflow_steps: List[str]) -> None:
         """Handle conversation memory storage."""
         try:
+            from app.core.conversation_memory import conversation_memory
             # Add user message
             conversation_memory.add_message(
                 session_id=session_id,
@@ -100,7 +101,8 @@ class BaseAgent(ABC):
     def _get_conversation_context(self, session_id: str) -> tuple[List[Dict], Dict[str, Any]]:
         """Get conversation history and user context."""
         try:
-            history = conversation_memory.get_recent_messages(session_id, limit=10)
+            from app.core.conversation_memory import conversation_memory
+            history = conversation_memory.get_conversation_history(session_id, max_messages=10)
             user_context = conversation_memory.get_user_context(session_id)
             return history, user_context
         except Exception as e:

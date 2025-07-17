@@ -1,0 +1,120 @@
+{
+  "session_id": "test_user_123",
+  "messages": [
+    {
+      "role": "user",
+      "content": "I need a wheelchair for my elderly father",
+      "timestamp": "2025-07-17T01:11:48.087915",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "I'm sorry, I couldn't find any products matching your request. However, here are some similar or related products you might be interested in (based on your request):\n\n1. M+D Forearm Crutches, Height Adjustable, Black ,Pair ,# MD10002Rev5 - 35.0 KWD\n   https://www.alessaonline.com/default/buy-md-forearm-crutches-online-kuwait.html\n2. Al Essa Walking Stick With Seat - # CA836 - 7.0 KWD\n   https://www.alessaonline.com/default/buy-al-essa-walking-stick-with-seat-online-ca836.html\n3. Al Essa Walking Stick With Seat  - #HFK-9301 - 5.5 KWD\n   https://www.alessaonline.com/default/buy-al-essa-walking-stick-with-seat-online-kuwait.html\n4. DRIVE Folding Walking Frame # Wa008 - 17.0 KWD\n   https://www.alessaonline.com/default/default-buy-drive-folding-walking-frame-online-kuwait-html-2.html\n5. Karma S-Ergo 305 Light Wheelchair, 24 inch Solid Rear Wheel, Seat Width 18 inch, Color Pearl Silver # Km-3520.2Q24 - 150.0 KWD\n   https://www.alessaonline.com/default/karma-manual-wheelchair-s-ergo-305q24-with-seat-width-depth-16-x17-18-x17.html\n\nIf you want more details about any of these, or need help choosing, just let me know!",
+      "timestamp": "2025-07-17T01:11:48.088224",
+      "agent_type": "sales",
+      "products": [
+        {
+          "name": "M+D Forearm Crutches, Height Adjustable, Black ,Pair ,# MD10002Rev5",
+          "price": 35.0,
+          "url": "https://www.alessaonline.com/default/buy-md-forearm-crutches-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Walking Stick With Seat - # CA836",
+          "price": 7.0,
+          "url": "https://www.alessaonline.com/default/buy-al-essa-walking-stick-with-seat-online-ca836.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Walking Stick With Seat  - #HFK-9301",
+          "price": 5.5,
+          "url": "https://www.alessaonline.com/default/buy-al-essa-walking-stick-with-seat-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "DRIVE Folding Walking Frame # Wa008",
+          "price": 17.0,
+          "url": "https://www.alessaonline.com/default/default-buy-drive-folding-walking-frame-online-kuwait-html-2.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Karma S-Ergo 305 Light Wheelchair, 24 inch Solid Rear Wheel, Seat Width 18 inch, Color Pearl Silver # Km-3520.2Q24",
+          "price": 150.0,
+          "url": "https://www.alessaonline.com/default/karma-manual-wheelchair-s-ergo-305q24-with-seat-width-depth-16-x17-18-x17.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Karma  S-Ergo 125 Light Wheelchair, 24 Inch Solid Wheel, Seat Width 20 Inch",
+          "price": 220.0,
+          "url": "https://www.alessaonline.com/default/default-buy-karma-sergo-manual-wheelchair-online-kuwait-html.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Aluminum Commode Chair, With Padded Seat, Grey, 43 Cm # CA613L",
+          "price": 49.0,
+          "url": "https://www.alessaonline.com/default/al-essa-ca6208l-wheeled-commode-commode-chair.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Walking Stick Height Adjustable - # CA833L1",
+          "price": 3.0,
+          "url": "https://www.alessaonline.com/default/buy-al-essa-walking-stick-height-adjustable-online-ca833l1.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Walking Stick  Folding Type  - #HFK-9324",
+          "price": 3.0,
+          "url": "https://www.alessaonline.com/default/buy-al-essa-walking-stick-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "BraunAbility Turny Orbit Lift Seat Lift",
+          "price": 1500.0,
+          "url": "https://www.alessaonline.com/default/braunability-turny-orbit-lift-seat-lift.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "TRANSFER SHOWER BENCH- ALUMINIUM # CA362L",
+          "price": 22.0,
+          "url": "https://www.alessaonline.com/default/default-buy-shower-bench-aluminium-online-kuwait-html.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Drive DeVilbiss D-Q-SiT Gel Seat cushion",
+          "price": 22.0,
+          "url": "https://www.alessaonline.com/default/drive-devilbiss-d-q-sit-gel-seat-cushion.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Sunrise Quickie Q50R Folding Power Wheelchair, Weight Capacity 136 kg, Seat Width 43 Cm # 23200000",
+          "price": 495.0,
+          "url": "https://www.alessaonline.com/default/buy-sunrisequickie-q50r-folding-power-wheelchair-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "sales_analysis",
+        "product_search"
+      ]
+    }
+  ],
+  "created_at": "2025-07-17T01:11:48.087899",
+  "last_updated": "2025-07-17T01:11:48.088234",
+  "agent_type": "sales",
+  "user_context": {}
+}

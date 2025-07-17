@@ -1,0 +1,79 @@
+[
+  {
+    "query": "I need a wheelchair for my elderly father",
+    "session_id": "test_user_123",
+    "agent_type": "sales",
+    "response_time": 8.348715782165527,
+    "products_found": 0,
+    "cache_hit": false,
+    "success": false,
+    "error_message": "name 'conversation_memory' is not defined",
+    "timestamp": 1752714708.0898275
+  },
+  {
+    "query": "hello",
+    "session_id": "test",
+    "agent_type": "sales",
+    "response_time": 2.962939500808716,
+    "products_found": 0,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752714751.717966
+  },
+  {
+    "query": "I have knee pain and need medical equipment",
+    "session_id": "test_medical",
+    "agent_type": "doctor",
+    "response_time": 22.751649618148804,
+    "products_found": 0,
+    "cache_hit": false,
+    "success": false,
+    "error_message": "name 'conversation_memory' is not defined",
+    "timestamp": 1752714780.4875674
+  },
+  {
+    "query": "I have knee pain and need medical equipment",
+    "session_id": "test_medical",
+    "agent_type": "doctor",
+    "response_time": 15.871195554733276,
+    "products_found": 0,
+    "cache_hit": false,
+    "success": false,
+    "error_message": "name 'conversation_memory' is not defined",
+    "timestamp": 1752714849.5086575
+  },
+  {
+    "query": "I have knee pain and need medical equipment",
+    "session_id": "test_medical",
+    "agent_type": "doctor",
+    "response_time": 30.91943097114563,
+    "products_found": 0,
+    "cache_hit": false,
+    "success": false,
+    "error_message": "name 'conversation_memory' is not defined",
+    "timestamp": 1752714926.0597312
+  },
+  {
+    "query": "I have knee pain and need medical equipment",
+    "session_id": "test_medical",
+    "agent_type": "doctor",
+    "response_time": 19.581839084625244,
+    "products_found": 5,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715002.1902015
+  },
+  {
+    "query": "I want to buy a wheelchair",
+    "session_id": "test_sales",
+    "agent_type": "sales",
+    "response_time": 4.806340932846069,
+    "products_found": 27,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715014.5024362
+  }
+]
