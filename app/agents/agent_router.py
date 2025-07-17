@@ -72,30 +72,61 @@ class AgentRouter:
     def route_query(self, query: str, session_id: str = "default") -> Dict[str, Any]:
         """Route a query to the appropriate agent."""
         try:
-            # Use LLM to determine which agent should handle the query
-            messages = [
-                SystemMessage(content=ROUTER_PROMPT),
-                HumanMessage(content=f"User query: {query}")
+            # ------------ NEW HEURISTIC ROUTING LOGIC ------------
+            query_lower = query.lower()
+            doctor_keywords = [
+                "pain", "ache", "injury", "hurt", "headache", "fever", "symptom", "dizziness", "nausea",
+                "diagnosis", "treatment", "therapy", "medicine", "medical condition", "scoliosis", "arthritis",
+                "diabetes", "asthma", "fracture", "sprain", "bruise", "swelling", "burn", "infection",
+                "bleeding", "rash", "wound", "cough", "breathing", "respiratory", "blood pressure", "pulse",
+                "glucose", "monitor", "wheelchair for", "doctor", "should i", "consult"
             ]
-            
-            response = llm.invoke(messages)
-            agent_choice = response.content.strip().upper()
-            
+            sales_keywords = [
+                "price", "cost", "buy", "purchase", "have", "do you have", "show me", "looking for", "sell",
+                "cheapest", "expensive", "wheelchair", "walker", "brace", "splint", "crutch", "air conditioner",
+                "refrigerator", "washing machine", "brand", "model", "availability", "stock", "kwd", "kd", "dinar"
+            ]
+
+            # Quick keyword-based classification; if both classes detected we will defer to LLM
+            agent_choice: str | None = None
+            if any(k in query_lower for k in doctor_keywords) and not any(k in query_lower for k in sales_keywords):
+                agent_choice = "DOCTOR"
+            elif any(k in query_lower for k in sales_keywords):
+                # If explicitly medical keywords also present, we still treat as doctor
+                if any(k in query_lower for k in doctor_keywords):
+                    agent_choice = "DOCTOR"
+                else:
+                    agent_choice = "SALES"
+
+            # Fallback to LLM only if heuristic couldn't decide
+            if agent_choice is None and llm is not None:
+                messages = [
+                    SystemMessage(content=ROUTER_PROMPT),
+                    HumanMessage(content=f"User query: {query}")
+                ]
+                try:
+                    response = llm.invoke(messages)
+                    agent_choice = response.content.strip().upper()
+                except Exception as e:
+                    # If LLM fails, default later
+                    agent_choice = None
+
+            # If still undecided, default to SALES
+            if agent_choice not in {"SALES", "DOCTOR"}:
+                agent_choice = "SALES"
+
+            # ---------------- END HEURISTIC LOGIC ----------------
+
             # Route to appropriate agent
             if agent_choice == "DOCTOR":
                 result = self.doctor_agent.process_query(query, session_id)
                 result["routing_decision"] = "doctor"
                 return result
-            elif agent_choice == "SALES":
+            else:  # SALES or default
                 result = self.sales_agent.process_query(query, session_id)
                 result["routing_decision"] = "sales"
                 return result
-            else:
-                # Default to sales agent if routing is unclear
-                result = self.sales_agent.process_query(query, session_id)
-                result["routing_decision"] = "sales (default)"
-                return result
-                
+
         except Exception as e:
             # Fallback to sales agent on error
             result = self.sales_agent.process_query(query, session_id)
