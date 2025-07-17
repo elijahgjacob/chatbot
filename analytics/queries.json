@@ -75,5 +75,82 @@
     "success": true,
     "error_message": null,
     "timestamp": 1752715014.5024362
+  },
+  {
+    "query": "hi",
+    "session_id": "cli_session",
+    "agent_type": "sales",
+    "response_time": 1.9943981170654297,
+    "products_found": 0,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715065.1401887
+  },
+  {
+    "query": "i need a wheelchair",
+    "session_id": "cli_session",
+    "agent_type": "sales",
+    "response_time": 3.7229835987091064,
+    "products_found": 30,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715079.0435364
+  },
+  {
+    "query": "\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[Bd",
+    "session_id": "cli_session",
+    "agent_type": "sales",
+    "response_time": 1.7935001850128174,
+    "products_found": 0,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715097.0940926
+  },
+  {
+    "query": "i need a manual wheelchair",
+    "session_id": "cli_session",
+    "agent_type": "sales",
+    "response_time": 5.42999005317688,
+    "products_found": 29,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715113.145981
+  },
+  {
+    "query": "\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[Bare you",
+    "session_id": "cli_session",
+    "agent_type": "sales",
+    "response_time": 41.93806576728821,
+    "products_found": 0,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715180.8184783
+  },
+  {
+    "query": "are you sure those products are manual wheelchairs?",
+    "session_id": "cli_session",
+    "agent_type": "sales",
+    "response_time": 13.520937204360962,
+    "products_found": 4,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715194.342096
+  },
+  {
+    "query": "why are you giving me manual breast pumps when i ask for wheelchairs",
+    "session_id": "cli_session",
+    "agent_type": "sales",
+    "response_time": 9.80466628074646,
+    "products_found": 3,
+    "cache_hit": false,
+    "success": true,
+    "error_message": null,
+    "timestamp": 1752715223.1803584
   }
 ]

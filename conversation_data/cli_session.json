@@ -531,13 +531,615 @@
         "sales_analysis",
         "product_search"
       ]
+    },
+    {
+      "role": "user",
+      "content": "hi",
+      "timestamp": "2025-07-17T01:17:45.135902",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Hi there! How can I assist you today? Since your interest lies in braces and supports, would you like to explore more options within your budget? If so, I can help you find the best fit for your needs!",
+      "timestamp": "2025-07-17T01:17:45.137334",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "i need a wheelchair",
+      "timestamp": "2025-07-17T01:17:59.036853",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Here are the top options I found for your request:\n\n1. DynaRide Bariatric Folding Bariatric Wheelchair - 150.0 KWD\n   https://www.alessaonline.com/default/dynaride-bariatric-folding-bariatric-wheelchair.html\n2. Al Essa Bi-Fold Aluminium Wheelchair Ramp - 100.0 KWD\n   https://www.alessaonline.com/default/al-essa-mr607m-60cm-equipment-ramp.html\n3. Al Essa Soild Bariatric Steel Wheelchair - 85.0 KWD\n   https://www.alessaonline.com/default/al-essa-soild-bariatric-steel-wheelchair.html\n4. WONSH BI-FOLD MULTIFUCTION WHEELCHAIR RAMP-4 FEET # MR607M- 120CM - 100.0 KWD\n   https://www.alessaonline.com/default/wonsh-bi-fold-multifuction-wheelchair-ramp-4-feet-mr607m-120cm.html\n5. Al Essa CA941 Reclining Backrest Special Feature Wheelchairs - 69.0 KWD\n   https://www.alessaonline.com/default/al-essa-ca941-reclining-backrest-special-feature-wheelchairs.html\n\nIf you want more details about any of these, or need help choosing, just let me know!",
+      "timestamp": "2025-07-17T01:17:59.038388",
+      "agent_type": "sales",
+      "products": [
+        {
+          "name": "DynaRide Bariatric Folding Bariatric Wheelchair",
+          "price": 150.0,
+          "url": "https://www.alessaonline.com/default/dynaride-bariatric-folding-bariatric-wheelchair.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Bi-Fold Aluminium Wheelchair Ramp",
+          "price": 100.0,
+          "url": "https://www.alessaonline.com/default/al-essa-mr607m-60cm-equipment-ramp.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Soild Bariatric Steel Wheelchair",
+          "price": 85.0,
+          "url": "https://www.alessaonline.com/default/al-essa-soild-bariatric-steel-wheelchair.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "WONSH BI-FOLD MULTIFUCTION WHEELCHAIR RAMP-4 FEET # MR607M- 120CM",
+          "price": 100.0,
+          "url": "https://www.alessaonline.com/default/wonsh-bi-fold-multifuction-wheelchair-ramp-4-feet-mr607m-120cm.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa CA941 Reclining Backrest Special Feature Wheelchairs",
+          "price": 69.0,
+          "url": "https://www.alessaonline.com/default/al-essa-ca941-reclining-backrest-special-feature-wheelchairs.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Detecto Portable Digital Wheelchair Scale with Folding Column # 6550KGEU",
+          "price": 900.0,
+          "url": "https://www.alessaonline.com/default/buy-detecto-portable-digital-wheelchair-scale-with-folding-column-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "WHEELCHAIR LIFT FOR VEHICLE - L990IB2740-2 SOLID",
+          "price": 1585.0,
+          "url": "https://www.alessaonline.com/default/buy-wheelchair-for-vehicle-lift-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Drive Sentra EC Bariatric Bariatric Wheelchair",
+          "price": 150.0,
+          "url": "https://www.alessaonline.com/default/buy-drive-sentra-bariatric-steel-wheelchair-with-elevating-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Lithium Battery For Power Wheelchair- Model # Un5003A-005",
+          "price": 100.0,
+          "url": "https://www.alessaonline.com/default/lithium-battery-for-power-wheelchair.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "KALLI H R WHEELCHAIR CUSHION",
+          "price": 25.0,
+          "url": "https://www.alessaonline.com/default/buy-kalli-wheelchair-cushion-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa CA9791LF Light Wheelchair Light Wheelchair",
+          "price": 75.0,
+          "url": "https://www.alessaonline.com/default/al-essa-ca9791lf-light-wheelchair-light-wheelchair.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Drive Sentra EC Folding Bariatric Wheelchair",
+          "price": 140.0,
+          "url": "https://www.alessaonline.com/default/buy-drive-bariatric-range-steel-wheelchair-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Karma  S-Ergo 125 Light Wheelchair, 24 Inch Solid Wheel, Seat Width 20 Inch",
+          "price": 220.0,
+          "url": "https://www.alessaonline.com/default/default-buy-karma-sergo-manual-wheelchair-online-kuwait-html.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Autolift BB-1050-KW Vehicle Wheelchair Lift",
+          "price": 1650.0,
+          "url": "https://www.alessaonline.com/default/autolift-bb-1050-kw-vehicle-wheelchair-lift.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Merits Pediatric Steel Wheelchair-14 Solid Tyres - # M451\"",
+          "price": 110.0,
+          "url": "https://www.alessaonline.com/default/buy-merits-pediatric-steel-wheelchair-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "WHEELCHAIR LIFT FOR VEHICLE- L955SE3143IB-2 SOLID",
+          "price": 1700.0,
+          "url": "https://www.alessaonline.com/default/buy-wheelchair-lift-for-vehicle-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa CA928B Folding Bariatric Wheelchair",
+          "price": 69.0,
+          "url": "https://www.alessaonline.com/default/buy-al-essa-heavy-duty-steel-wheelchair-22-56cm-with-detachable-arm-foot-rest-online-ca928b.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Braunability Carony Classic Wheelchair Base With 24 / 60 Cms Rear Wheels  Right Side - # 100872\"",
+          "price": 1400.0,
+          "url": "https://www.alessaonline.com/default/braunability-carony-classic-wheelchair-base-with-24-60-cms-rear-wheels-right-side-100872.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Light Wheelchair With 24 Inch Solid Spoke Rear Wheel, Black, (20\") # Yk9073",
+          "price": 95.0,
+          "url": "https://www.alessaonline.com/default/buy-aluminum-lightweight-wheelchair-black-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Aluminum Wheelchair- Children # Ca987L",
+          "price": 79.0,
+          "url": "https://www.alessaonline.com/default/aluminum-wheelchair-children-ca987l.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Light Travel Wheelchair With Bag (Blue,19\") # Yk9093",
+          "price": 85.0,
+          "url": "https://www.alessaonline.com/default/buy-aluminium-travel-wheelchair-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Sunrise - Breezy Premium Folding Steel Wheelchair",
+          "price": 120.0,
+          "url": "https://www.alessaonline.com/default/sunrise-breezy-premium-folding-steel-wheelchair.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Lightweight Power Wheelchair With Travel Bag, 24V/10AH Lithium Battery, Size 43 cm, Silver # W5521",
+          "price": 500.0,
+          "url": "https://www.alessaonline.com/default/buy-al-essa-lightweight-power-wheelchair-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Light Power Wheelchair With Travel Bag , Auto Folding With Remote Control, Seat Width 54 Cm, 24V/10Ah Lithium Battery # W5517",
+          "price": 590.0,
+          "url": "https://www.alessaonline.com/default/buy-al-essa-auto-folding-lightweight-power-wheelchair-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Sunrise - Breezy Wheelchair Breezy Premium Recliner With 24 Solid Rear Wheel  Anatomic Seat  Anatomic Back  Padded Head Rest & Elevating Leg Rest-Grey - # 08100101 46\"",
+          "price": 340.0,
+          "url": "https://www.alessaonline.com/default/buy-sunrise-breezy-wheelchair-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa CA905 Standard Folding Steel Wheelchair",
+          "price": 25.0,
+          "url": "https://www.alessaonline.com/default/default-buy-al-essa-standard-wheelchair-width-46-cm-online-html.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Sunrise Breezy Style Light Wheelchair, 24 inch Solid Spoke Rear Wheel (Candy Blue, 48 cm)",
+          "price": 150.0,
+          "url": "https://www.alessaonline.com/default/buy-sunrise-breezy-style-wheelchair-solid-spoke-wheel-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Drive DeVilbiss Travelite Light Wheelchair Light Wheelchair",
+          "price": 80.0,
+          "url": "https://www.alessaonline.com/default/buy-alessa-medical-drive-travel-chair-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "KARMA AGL Light Wheelchair, 24 inch Soild Quick Release Rear Wheel, 50 cm, Black # 92029-0008",
+          "price": 150.0,
+          "url": "https://www.alessaonline.com/default/buy-karma-agl-light-wheelchair-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Karma S-Ergo 305 Light Wheelchair, 24 inch Solid Rear Wheel, Seat Width 18 inch, Color Pearl Silver # Km-3520.2Q24",
+          "price": 150.0,
+          "url": "https://www.alessaonline.com/default/karma-manual-wheelchair-s-ergo-305q24-with-seat-width-depth-16-x17-18-x17.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_analysis",
+        "product_search"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[Bd",
+      "timestamp": "2025-07-17T01:18:17.089490",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "It looks like my last response included some great wheelchair options for you! Are you interested in any specific features, like a reclining backrest or lightweight design, to help narrow down your choices?",
+      "timestamp": "2025-07-17T01:18:17.091374",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "i need a manual wheelchair",
+      "timestamp": "2025-07-17T01:18:33.138714",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Here are the top options I found for your request:\n\n1. Karma  S-Ergo 125 Light Wheelchair, 24 Inch Solid Wheel, Seat Width 20 Inch - 220.0 KWD\n   https://www.alessaonline.com/default/default-buy-karma-sergo-manual-wheelchair-online-kuwait-html.html\n2. DynaRide Bariatric Folding Bariatric Wheelchair - 150.0 KWD\n   https://www.alessaonline.com/default/dynaride-bariatric-folding-bariatric-wheelchair.html\n3. Al Essa Bi-Fold Aluminium Wheelchair Ramp - 100.0 KWD\n   https://www.alessaonline.com/default/al-essa-mr607m-60cm-equipment-ramp.html\n4. Al Essa Soild Bariatric Steel Wheelchair - 85.0 KWD\n   https://www.alessaonline.com/default/al-essa-soild-bariatric-steel-wheelchair.html\n5. WONSH BI-FOLD MULTIFUCTION WHEELCHAIR RAMP-4 FEET # MR607M- 120CM - 100.0 KWD\n   https://www.alessaonline.com/default/wonsh-bi-fold-multifuction-wheelchair-ramp-4-feet-mr607m-120cm.html\n\nIf you want more details about any of these, or need help choosing, just let me know!",
+      "timestamp": "2025-07-17T01:18:33.140547",
+      "agent_type": "sales",
+      "products": [
+        {
+          "name": "Karma  S-Ergo 125 Light Wheelchair, 24 Inch Solid Wheel, Seat Width 20 Inch",
+          "price": 220.0,
+          "url": "https://www.alessaonline.com/default/default-buy-karma-sergo-manual-wheelchair-online-kuwait-html.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "DynaRide Bariatric Folding Bariatric Wheelchair",
+          "price": 150.0,
+          "url": "https://www.alessaonline.com/default/dynaride-bariatric-folding-bariatric-wheelchair.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Bi-Fold Aluminium Wheelchair Ramp",
+          "price": 100.0,
+          "url": "https://www.alessaonline.com/default/al-essa-mr607m-60cm-equipment-ramp.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Soild Bariatric Steel Wheelchair",
+          "price": 85.0,
+          "url": "https://www.alessaonline.com/default/al-essa-soild-bariatric-steel-wheelchair.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "WONSH BI-FOLD MULTIFUCTION WHEELCHAIR RAMP-4 FEET # MR607M- 120CM",
+          "price": 100.0,
+          "url": "https://www.alessaonline.com/default/wonsh-bi-fold-multifuction-wheelchair-ramp-4-feet-mr607m-120cm.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Mebby Natural Manual Breast Pump - # 95014",
+          "price": 4.5,
+          "url": "https://www.alessaonline.com/default/buy-mebby-natural-manual-breast-pump-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Karma S-Ergo 305 Light Wheelchair, 24 inch Solid Rear Wheel, Seat Width 18 inch, Color Pearl Silver # Km-3520.2Q24",
+          "price": 150.0,
+          "url": "https://www.alessaonline.com/default/karma-manual-wheelchair-s-ergo-305q24-with-seat-width-depth-16-x17-18-x17.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Drive Sentra EC Folding Bariatric Wheelchair",
+          "price": 140.0,
+          "url": "https://www.alessaonline.com/default/buy-drive-bariatric-range-steel-wheelchair-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa CA941 Reclining Backrest Special Feature Wheelchairs",
+          "price": 69.0,
+          "url": "https://www.alessaonline.com/default/al-essa-ca941-reclining-backrest-special-feature-wheelchairs.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Solax Mobie Plus Manual Folding Scooter",
+          "price": 490.0,
+          "url": "https://www.alessaonline.com/default/solax-mobie-plus-manual-folding-scooter.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Detecto Portable Digital Wheelchair Scale with Folding Column # 6550KGEU",
+          "price": 900.0,
+          "url": "https://www.alessaonline.com/default/buy-detecto-portable-digital-wheelchair-scale-with-folding-column-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "WHEELCHAIR LIFT FOR VEHICLE - L990IB2740-2 SOLID",
+          "price": 1585.0,
+          "url": "https://www.alessaonline.com/default/buy-wheelchair-for-vehicle-lift-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Drive Sentra EC Bariatric Bariatric Wheelchair",
+          "price": 150.0,
+          "url": "https://www.alessaonline.com/default/buy-drive-sentra-bariatric-steel-wheelchair-with-elevating-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Sunrise Breezy Style Light Wheelchair, 12 inch Solid Wheel",
+          "price": 150.0,
+          "url": "https://www.alessaonline.com/default/sunrise-breezy-312-lightweight-transport-wheelchair-49-cm.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Lithium Battery For Power Wheelchair- Model # Un5003A-005",
+          "price": 100.0,
+          "url": "https://www.alessaonline.com/default/lithium-battery-for-power-wheelchair.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Karma Km-8520Xf24 Folding Bariatric Wheelchair",
+          "price": 290.0,
+          "url": "https://www.alessaonline.com/default/buy-karma-manual-light-weight-heavy-duty-wheelchair-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Standard Steel Wheelchair, 24 Inch Solid Spoke Wheel",
+          "price": 55.0,
+          "url": "https://www.alessaonline.com/default/default-al-essa-standard-steel-wheelchair-24-inch-solid-spoke-wheel-html.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "KALLI H R WHEELCHAIR CUSHION",
+          "price": 25.0,
+          "url": "https://www.alessaonline.com/default/buy-kalli-wheelchair-cushion-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa CA9791LF Light Wheelchair Light Wheelchair",
+          "price": 75.0,
+          "url": "https://www.alessaonline.com/default/al-essa-ca9791lf-light-wheelchair-light-wheelchair.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Karma  S-Ergo 115 Light Wheelchair, Seat Width 18\"X17\", Color Silver # Km-1510.3",
+          "price": 200.0,
+          "url": "https://www.alessaonline.com/default/default-buy-alessa-medical-karma-manual-wheelchair-sergo-online-kuwait-html.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Autolift BB-1050-KW Vehicle Wheelchair Lift",
+          "price": 1650.0,
+          "url": "https://www.alessaonline.com/default/autolift-bb-1050-kw-vehicle-wheelchair-lift.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Merits Pediatric Steel Wheelchair-14 Solid Tyres - # M451\"",
+          "price": 110.0,
+          "url": "https://www.alessaonline.com/default/buy-merits-pediatric-steel-wheelchair-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Sunrise - Breezy Wheelchair Breezy Premium 49 Cm With Reclining And Elevating Leg Rest, 24 Inch Solid Spoke Wheel- Selenium Grey # 08100101 49",
+          "price": 250.0,
+          "url": "https://www.alessaonline.com/default/sunrise-breezy-wheelchair-breezy-premium-49-cm-with-reclining-and-elevating-leg-rest-24-inch-solid-spoke-wheel-selenium-grey-08100101-49.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "WHEELCHAIR LIFT FOR VEHICLE- L955SE3143IB-2 SOLID",
+          "price": 1700.0,
+          "url": "https://www.alessaonline.com/default/buy-wheelchair-lift-for-vehicle-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa CA928B Folding Bariatric Wheelchair",
+          "price": 69.0,
+          "url": "https://www.alessaonline.com/default/buy-al-essa-heavy-duty-steel-wheelchair-22-56cm-with-detachable-arm-foot-rest-online-ca928b.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Braunability Carony Classic Wheelchair Base With 24 / 60 Cms Rear Wheels  Right Side - # 100872\"",
+          "price": 1400.0,
+          "url": "https://www.alessaonline.com/default/braunability-carony-classic-wheelchair-base-with-24-60-cms-rear-wheels-right-side-100872.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa Light Wheelchair With 24 Inch Solid Spoke Rear Wheel, Black, (20\") # Yk9073",
+          "price": 95.0,
+          "url": "https://www.alessaonline.com/default/buy-aluminum-lightweight-wheelchair-black-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Karma Ergo Light Travel Wheelchair  Seat Width 18 X 17, Wheel Size 6 X 14F # 91049-0039",
+          "price": 150.0,
+          "url": "https://www.alessaonline.com/default/karma-ergo-light-travel-wheelchair-with-bag-seat-width-18-x-17-wheel-size-6-x-14f.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Aluminum Wheelchair- Children # Ca987L",
+          "price": 79.0,
+          "url": "https://www.alessaonline.com/default/aluminum-wheelchair-children-ca987l.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_analysis",
+        "product_search"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[B\u001b[Bare you",
+      "timestamp": "2025-07-17T01:19:40.812724",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "It seems you're looking for a manual wheelchair. Here are some options I presented earlier that fit your needs and are budget-friendly:\n\n1. **Karma S-Ergo 125 Light Wheelchair** - 220.0 KWD\n   - [View Product](https://www.alessaonline.com/default/default-buy-karma-sergo-manual-wheelchair-online-kuwait-html.html)\n  \n2. **DynaRide Bariatric Folding Bariatric Wheelchair** - 150.0 KWD\n   - [View Product](https://www.alessaonline.com/default/dynaride-bariatric-folding-bariatric-wheelchair.html)\n\n3. **Al Essa Soild Bariatric Steel Wheelchair** - 85.0 KWD\n   - [View Product](https://www.alessaonline.com/default/al-essa-soild-bariatric-steel-wheelchair.html)\n\n4. **WONSH BI-FOLD MULTIFUNCTION WHEELCHAIR RAMP (4 FEET)** - 100.0 KWD\n   - [View Product](https://www.alessaonline.com/default/wonsh-bi-fold-multifuction-wheelchair-ramp-4-feet-mr607m-120cm.html)\n\nSince you're budget-conscious, the **Al Essa Soild Bariatric Steel Wheelchair** at 85.0 KWD might be an excellent fit for you! Would you like to know more about any specific features, or do you have other preferences in mind?",
+      "timestamp": "2025-07-17T01:19:40.814997",
+      "agent_type": "sales",
+      "products": [],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_conversation"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "are you sure those products are manual wheelchairs?",
+      "timestamp": "2025-07-17T01:19:54.333947",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "Here are the top options I found for your request:\n\n1. Al Essa Ca904-51 Manual Steel Wheelchair - 45.0 KWD\n   https://www.alessaonline.com/default/al-essa-ca904-51-manual-steel-wheelchair.html\n2. Mebby Natural Manual Breast Pump - # 95014 - 4.5 KWD\n   https://www.alessaonline.com/default/buy-mebby-natural-manual-breast-pump-online.html\n3. Al Essa CA941 Reclining Backrest Special Feature Wheelchairs - 69.0 KWD\n   https://www.alessaonline.com/default/al-essa-ca941-reclining-backrest-special-feature-wheelchairs.html\n4. Solax Mobie Plus Manual Folding Scooter - 490.0 KWD\n   https://www.alessaonline.com/default/solax-mobie-plus-manual-folding-scooter.html\n\nIf you want more details about any of these, or need help choosing, just let me know!",
+      "timestamp": "2025-07-17T01:19:54.336113",
+      "agent_type": "sales",
+      "products": [
+        {
+          "name": "Al Essa Ca904-51 Manual Steel Wheelchair",
+          "price": 45.0,
+          "url": "https://www.alessaonline.com/default/al-essa-ca904-51-manual-steel-wheelchair.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Mebby Natural Manual Breast Pump - # 95014",
+          "price": 4.5,
+          "url": "https://www.alessaonline.com/default/buy-mebby-natural-manual-breast-pump-online.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Al Essa CA941 Reclining Backrest Special Feature Wheelchairs",
+          "price": 69.0,
+          "url": "https://www.alessaonline.com/default/al-essa-ca941-reclining-backrest-special-feature-wheelchairs.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Solax Mobie Plus Manual Folding Scooter",
+          "price": 490.0,
+          "url": "https://www.alessaonline.com/default/solax-mobie-plus-manual-folding-scooter.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "intelligent_routing",
+        "sales_analysis",
+        "product_search"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "why are you giving me manual breast pumps when i ask for wheelchairs",
+      "timestamp": "2025-07-17T01:20:23.174937",
+      "agent_type": null,
+      "products": [],
+      "workflow_steps": []
+    },
+    {
+      "role": "assistant",
+      "content": "I'm sorry, I couldn't find any products matching your request. However, here are some similar or related products you might be interested in (based on your request):\n\n1. M+D Forearm Crutches, Height Adjustable, Black ,Pair ,# MD10002Rev5 - 35.0 KWD\n   https://www.alessaonline.com/default/buy-md-forearm-crutches-online-kuwait.html\n2. Thuasne Forearm Globe-Trotter Crutches - 14.0 KWD\n   https://www.alessaonline.com/default/thuasne-forearm-globe-trotter-crutches.html\n3. Etac Molift Raiser Pro   Sit To Stand Transfer Aid - # 16090204 - 380.0 KWD\n   https://www.alessaonline.com/default/buy-etac-molift-raiser-pro-online-kuwait.html\n\nIf you want more details about any of these, or need help choosing, just let me know!",
+      "timestamp": "2025-07-17T01:20:23.177189",
+      "agent_type": "sales",
+      "products": [
+        {
+          "name": "M+D Forearm Crutches, Height Adjustable, Black ,Pair ,# MD10002Rev5",
+          "price": 35.0,
+          "url": "https://www.alessaonline.com/default/buy-md-forearm-crutches-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Thuasne Forearm Globe-Trotter Crutches",
+          "price": 14.0,
+          "url": "https://www.alessaonline.com/default/thuasne-forearm-globe-trotter-crutches.html",
+          "vendor": "",
+          "currency": "KWD"
+        },
+        {
+          "name": "Etac Molift Raiser Pro   Sit To Stand Transfer Aid - # 16090204",
+          "price": 380.0,
+          "url": "https://www.alessaonline.com/default/buy-etac-molift-raiser-pro-online-kuwait.html",
+          "vendor": "",
+          "currency": "KWD"
+        }
+      ],
+      "workflow_steps": [
+        "sales_analysis",
+        "product_search"
+      ]
     }
   ],
   "created_at": "2025-07-16T12:03:57.541951",
-  "last_updated": "2025-07-16T17:33:32.975976",
+  "last_updated": "2025-07-17T01:20:23.177196",
   "agent_type": "sales",
   "user_context": {
     "budget_conscious": true,
-    "interested_in": "braces/supports"
+    "interested_in": "wheelchairs"
   }
 }
